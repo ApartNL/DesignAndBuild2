@@ -16,6 +16,7 @@ public class SimulatorScreen extends JFrame {
 
     private Simulator sim;
     private Container container;
+    private Image im = Toolkit.getDefaultToolkit().getImage("CityParkingGroningen_120x40.png");
 
     public SimulatorScreen( Simulator sim) {
 
@@ -27,6 +28,10 @@ public class SimulatorScreen extends JFrame {
         this.setPreferredSize(new Dimension(1200, 800));
 
         this.setLayout(new BorderLayout());
+        this.setTitle("City Parking Groningen - Simulator");
+        this.setIconImage(im);
+
+        // this.setResizable(false);
 
         CarParkView carParkView = new CarParkView(sim);
         CarPieView carPieView = new CarPieView(sim);
