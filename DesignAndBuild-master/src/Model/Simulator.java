@@ -42,8 +42,9 @@ public class Simulator implements Runnable{
     private int tickPause = 100;
 
     private int reservationPerDay = 1;
-    private int weekDayArrivals= 50; // average number of arriving cars per hour
-    private int weekendArrivals = 90; // average number of arriving cars per hour
+    private int weekDayArrivals= 30; // average number of arriving cars per hour
+    private int weekendArrivals = 60; // average number of arriving cars per hour
+    private int drukte = 300; // average number of arriving cars per hour
 
     private int enterSpeed = 10; // number of cars that can enter per minute
     private int paymentSpeed = 10; // number of cars that can pay per minute
@@ -65,6 +66,7 @@ public class Simulator implements Runnable{
 
 
     public Simulator() {
+
         simulatorViews = new LinkedList<AbstractView>();
 
         entranceCarQueue = new CarQueue();
@@ -88,8 +90,8 @@ public class Simulator implements Runnable{
 
         ticksToDo = 0;
 
-        day = 0;
-        hour = 0;
+        day = 4;
+        hour = 18;
         minute = 0;
 
         running = false;
@@ -133,14 +135,35 @@ public class Simulator implements Runnable{
             day -= 7;
         }
 
-        // Get the average number of cars that arrive per hour.
-        int averageNumberOfCarsPerHour = day < 5
-                ? weekDayArrivals
-                : weekendArrivals;
+        int averageNumberOfCarsPerHour = 0;
+        if(hour >= 19 && hour<20 && day >=4 && day <= 6) {
+
+            averageNumberOfCarsPerHour = drukte;
+
+        }
+
+        else if(day >= 5 && day <= 6 )
+        {
+
+            averageNumberOfCarsPerHour = weekendArrivals;
+
+        }
+
+        else{
+
+            averageNumberOfCarsPerHour = weekDayArrivals;
+        }
+
+
+        //Get the average number of cars that arrive per hour.
+        //int averageNumberOfCarsPerHour = day < 5
+
+//             ? weekDayArrivals
+  //              : weekendArrivals;
 
         // Calculate the number of cars that arrive this minute.
-        double standardDeviation = averageNumberOfCarsPerHour * 0.1;
-        double numberOfCarsPerHour = averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
+        double standardDeviation =  averageNumberOfCarsPerHour * 0.1;
+        double numberOfCarsPerHour =  averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
         int numberOfCarsPerMinute = (int)Math.round(numberOfCarsPerHour / 60);
 
 
@@ -268,7 +291,48 @@ public class Simulator implements Runnable{
             view.updateView();
         }
     }
-//testhoihoi
+
+
+    public  String getDay() {
+        String dayString ="";
+        switch (day){
+            case 0: dayString = "Monday";
+                break;
+            case 1: dayString = "Tuesday";
+                break;
+            case 2: dayString = "Wednesday";
+                break;
+            case 3: dayString = "Thursday";
+                break;
+            case 4: dayString = "Friday";
+                break;
+            case 5: dayString = "Saturday";
+                break;
+            case 6: dayString = "Sunday";
+                break;
+        }
+
+        return dayString;
+    }
+
+    public String getHour() {
+        if(hour < 10) {
+        return "0" + hour; }
+
+        else {
+    return "" + hour;
+        }
+    }
+
+    public String getMinute() {
+        if(minute < 10) {
+            return "0" + minute; }
+
+        else {
+            return "" + minute;
+        }
+    }
+
     public int getNumberOfFloors() {
         return numberOfFloors;
     }

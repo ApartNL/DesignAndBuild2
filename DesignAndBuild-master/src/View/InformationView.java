@@ -21,7 +21,9 @@ public class InformationView extends AbstractView {
     private static final String LABEL_AMOUNT_OF_REVENUE_TICKET_CARS                 = "Ticket car revenue :";
     private static final String LABEL_AMOUNT_OF_REVENUE_PARKPASS_CARS               = "Parkpass car revenue :";
     private static final String LABEL_AMOUNT_OF_REVENUE_RESERVATION_CARS            = "Reservation car revenue :";
+    private static final String LABEL_TIME = "Time :";
 
+    private JLabel label_time;
     private JLabel label_totalAmountOfCars;
     private JLabel label_carsWithParkingPass;
     private JLabel label_carsWithTickets;
@@ -37,6 +39,7 @@ public class InformationView extends AbstractView {
     private JLabel label_amountOfParkpassCarRevenue;
     private JLabel label_amountOfReservationCarRevenue;
 
+    private JLabel time;
     private JLabel totalAmountOfCars;
     private JLabel carsWithParkingPass;
     private JLabel carsWithTickets;
@@ -54,7 +57,7 @@ public class InformationView extends AbstractView {
 
     public InformationView(Simulator sim) {
         super(sim);
-
+        this.label_time = new JLabel(InformationView.LABEL_TIME);
         this.label_totalAmountOfCars = new JLabel(InformationView.LABEL_TOTAL_AMOUNT_OF_CARS);
         this.label_carsWithParkingPass = new JLabel(InformationView.LABEL_CARS_WITH_PARKING_PASS);
         this.label_carsWithTickets = new JLabel(InformationView.LABEL_CARS_WITH_TICKETS);
@@ -70,6 +73,7 @@ public class InformationView extends AbstractView {
         this.label_amountOfParkpassCarRevenue = new JLabel(InformationView.LABEL_AMOUNT_OF_REVENUE_PARKPASS_CARS);
         this.label_amountOfReservationCarRevenue = new JLabel(InformationView.LABEL_AMOUNT_OF_REVENUE_RESERVATION_CARS);
 
+        this.time = new JLabel("0");
         this.totalAmountOfCars              = new JLabel("0");
         this.carsWithParkingPass            = new JLabel("0");
         this.carsWithTickets                = new JLabel("0");
@@ -86,8 +90,9 @@ public class InformationView extends AbstractView {
         this.amountOfParkpassCarRevenue = new JLabel("0");
         this.amountOfReservationCarRevenue = new JLabel("0");
 
-        this.setLayout(new GridLayout(15,2));
-
+        this.setLayout(new GridLayout(16,2));
+        this.add(label_time);
+        this.add(time);
         this.add(label_totalAmountOfCars);
         this.add(totalAmountOfCars);
         this.add(label_carsWithParkingPass);
@@ -121,6 +126,8 @@ public class InformationView extends AbstractView {
 
     @Override
     public void updateView() {
+
+        this.time.setText(sim.getDay() + " " + sim.getHour() + ":" + sim.getMinute());
         this.sim.countAllCars();
 
         this.totalAmountOfCars.setText(sim.getTotalNumberOfCars() + " cars");
@@ -137,5 +144,6 @@ public class InformationView extends AbstractView {
         this.amountOfTicketCarRevenue.setText(sim.getTicketCarRevenue() + " revenue");
         this.amountOfParkpassCarRevenue.setText(sim.getParkpassCarRevenue()+ " revenue");
         this.amountOfReservationCarRevenue.setText(sim.getReservationCarRevenue() + " revenue");
+
     }
 }
