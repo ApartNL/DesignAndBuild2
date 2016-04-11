@@ -97,6 +97,14 @@ public class Simulator implements Runnable{
         running = false;
     }
 
+    public void dayTicks() {
+        ticksToDo += 1440;
+    }
+
+    public void oneHour() {
+        ticksToDo += 60;
+    }
+
     public void hundredTicks() {
         ticksToDo += 100;
     }

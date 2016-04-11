@@ -12,8 +12,8 @@ public class PaymentMachine {
     public static final float DEFAULT_RESERVATION_DISCOUNT = 0.8f;
 
     public static final float DEFAULT_NORMAL_CAR_PRICE = 100;
-    public static final float DEFAULT_PARKPASS_CAR_PRICE = (PaymentMachine.DEFAULT_NORMAL_CAR_PRICE* PaymentMachine.DEFAULT_PARKPASS_DISCOUNT);
-    public static final float DEFAULT_RESERVATION_CAR_PRICE = (PaymentMachine.DEFAULT_NORMAL_CAR_PRICE* PaymentMachine.DEFAULT_RESERVATION_DISCOUNT);
+    public static final float DEFAULT_PARKPASS_CAR_PRICE = (PaymentMachine.DEFAULT_NORMAL_CAR_PRICE * PaymentMachine.DEFAULT_PARKPASS_DISCOUNT);
+    public static final float DEFAULT_RESERVATION_CAR_PRICE = (PaymentMachine.DEFAULT_NORMAL_CAR_PRICE * PaymentMachine.DEFAULT_RESERVATION_DISCOUNT);
 
     private float normalCarPrice;
     private float parkpassCarPrice;
