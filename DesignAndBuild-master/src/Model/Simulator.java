@@ -268,7 +268,7 @@ public class Simulator implements Runnable{
             view.updateView();
         }
     }
-
+//testhoihoi
     public int getNumberOfFloors() {
         return numberOfFloors;
     }
