@@ -10,6 +10,7 @@ public class InformationView extends AbstractView {
     private static final String LABEL_TOTAL_AMOUNT_OF_CARS      = "Total cars :";
     private static final String LABEL_CARS_WITH_PARKING_PASS    = "Parking pass cars :";
     private static final String LABEL_CARS_WITH_TICKETS         = "Cars with tickets :";
+    private static final String LABEL_CARS_WITH_RESERVATIONS    = "Cars with a reservation: ";
     private static final String LABEL_AMOUNT_OF_CARS_IN_ENTRANCE_QUEUE  = "Entrance queue :";
     private static final String LABEL_AMOUNT_OF_CARS_IN_EXIT_QUEUE      = "Exit queue :";
     private static final String LABEL_AMOUNT_OF_PARKPASS_CARS_IN_ENTRANCE_QUEUE  = "Parking pass entrance queue :";
@@ -24,6 +25,7 @@ public class InformationView extends AbstractView {
     private JLabel label_totalAmountOfCars;
     private JLabel label_carsWithParkingPass;
     private JLabel label_carsWithTickets;
+    private JLabel label_carsWithReservations;
     private JLabel label_amountOfCarsInEntranceQueue;
     private JLabel label_amountOfCarsInExitQueue;
     private JLabel label_amountOfReservationCarsInEntranceQueue;
@@ -38,6 +40,7 @@ public class InformationView extends AbstractView {
     private JLabel totalAmountOfCars;
     private JLabel carsWithParkingPass;
     private JLabel carsWithTickets;
+    private JLabel carsWithReservations;
     private JLabel amountOfCarsInEntranceQueue;
     private JLabel amountOfCarsInExitQueue;
     private JLabel amountOfReservationCarsInEntranceQueue;
@@ -55,6 +58,7 @@ public class InformationView extends AbstractView {
         this.label_totalAmountOfCars = new JLabel(InformationView.LABEL_TOTAL_AMOUNT_OF_CARS);
         this.label_carsWithParkingPass = new JLabel(InformationView.LABEL_CARS_WITH_PARKING_PASS);
         this.label_carsWithTickets = new JLabel(InformationView.LABEL_CARS_WITH_TICKETS);
+        this.label_carsWithReservations = new JLabel(InformationView.LABEL_CARS_WITH_RESERVATIONS);
         this.label_amountOfCarsInEntranceQueue = new JLabel(InformationView.LABEL_AMOUNT_OF_CARS_IN_ENTRANCE_QUEUE);
         this.label_amountOfCarsInExitQueue = new JLabel(InformationView.LABEL_AMOUNT_OF_CARS_IN_EXIT_QUEUE);
         this.label_amountOfReservationCarsInEntranceQueue = new JLabel(InformationView.LABEL_AMOUNT_OF_RESERVATION_CARS_IN_ENTRANCE_QUEUE);
@@ -69,6 +73,7 @@ public class InformationView extends AbstractView {
         this.totalAmountOfCars              = new JLabel("0");
         this.carsWithParkingPass            = new JLabel("0");
         this.carsWithTickets                = new JLabel("0");
+        this.carsWithReservations           = new JLabel("0");
         this.amountOfCarsInEntranceQueue    = new JLabel("0");
         this.amountOfCarsInExitQueue        = new JLabel("0");
         this.amountOfReservationCarsInEntranceQueue    = new JLabel("0");
@@ -81,7 +86,7 @@ public class InformationView extends AbstractView {
         this.amountOfParkpassCarRevenue = new JLabel("0");
         this.amountOfReservationCarRevenue = new JLabel("0");
 
-        this.setLayout(new GridLayout(13,2));
+        this.setLayout(new GridLayout(15,2));
 
         this.add(label_totalAmountOfCars);
         this.add(totalAmountOfCars);
@@ -89,6 +94,8 @@ public class InformationView extends AbstractView {
         this.add(carsWithParkingPass);
         this.add(label_carsWithTickets);
         this.add(carsWithTickets);
+        this.add(label_carsWithReservations);
+        this.add(carsWithReservations);
         this.add(label_amountOfCarsInEntranceQueue);
         this.add(amountOfCarsInEntranceQueue);
         this.add(label_amountOfCarsInExitQueue);
@@ -119,6 +126,7 @@ public class InformationView extends AbstractView {
         this.totalAmountOfCars.setText(sim.getTotalNumberOfCars() + " cars");
         this.carsWithParkingPass.setText(sim.getTotalNumberOfParkingPassCars() + " cars");
         this.carsWithTickets.setText(sim.getTotalNumberOfTicketCars() + " cars");
+        this.carsWithReservations.setText(sim.getTotalNumberOfReservationCars() + " cars");
         this.amountOfCarsInEntranceQueue.setText(sim.getEntranceCarQueueAmount() + " cars");
         this.amountOfCarsInExitQueue.setText(sim.getExitCarQueueAmount() + " cars");
         this.amountOfParkpassCarsInEntranceQueue.setText(sim.getParkingPassCarsEntranceCarQueueAmount() + " cars");
