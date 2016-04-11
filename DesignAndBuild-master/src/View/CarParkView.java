@@ -60,7 +60,7 @@ public class CarParkView extends AbstractView {
                     Car car = sim.getCarAt(location);
                     Color color ;
                     if(car == null){
-                        color = Color.green;
+                        color = Color.white;
                     } else if(car instanceof AdHocCar){
                         color = Color.red;
                     } else if(car instanceof ParkPassCar){

@@ -111,7 +111,7 @@ public class Simulator implements Runnable{
                     tick();
                     ticksToDo--;
                 }
-                Thread.sleep(200);
+                Thread.sleep(1000);
             }
         } catch(InterruptedException ex){
             System.err.println(ex);
@@ -152,7 +152,7 @@ public class Simulator implements Runnable{
                 Car reservedCar = new ReservationCar();
                 specialEntranceCarQueue.addCar(reservedCar);
                 paymentMachine.pay(reservedCar);
-            } else if(randomD <= 0.5){
+            } else if(randomD > 0.3 && randomD <=0.6){
                 System.out.println("Adding parkpass car!");
                 specialEntranceCarQueue.addCar(new ParkPassCar());
             } else {
@@ -182,7 +182,7 @@ public class Simulator implements Runnable{
             } else if((specialEntranceCarQueue.peek() != null)) {
                 Car specialCar = specialEntranceCarQueue.peek();
                 if(this.parkCarAtFirstFreeLocation(specialCar)){
-                    entranceCarQueue.removeCar();
+                    specialEntranceCarQueue.removeCar();
                     specialCars++;
                 }
             }
