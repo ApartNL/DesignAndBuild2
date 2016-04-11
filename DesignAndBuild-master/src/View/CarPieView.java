@@ -40,9 +40,9 @@ public class CarPieView extends AbstractView {
 
         int totalAmountOfCars = this.ticketCars + this.parkPassCars + this.ticketCars;
         // Percentage berekenen
-        float percentageTicket = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : totalAmountOfCars/ticketCars * 100;
-        float percentageParkPass = totalAmountOfCars <= 0 || this.parkPassCars <= 0 ? 0 : totalAmountOfCars/parkPassCars * 100;
-        float percentageReservation = totalAmountOfCars <= 0 || this.reservationCars <= 0 ? 0 : totalAmountOfCars/reservationCars * 100;
+        float percentageTicket = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : 100/totalAmountOfCars * ticketCars;
+        float percentageParkPass = totalAmountOfCars <= 0 || this.parkPassCars <= 0 ? 0 : 100/totalAmountOfCars * parkPassCars;
+        float percentageReservation = totalAmountOfCars <= 0 || this.reservationCars <= 0 ? 0 : 100/totalAmountOfCars * reservationCars;
 
         // Hoek berekenen
         float ticketAngle = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : 360/100*percentageTicket;
@@ -54,8 +54,8 @@ public class CarPieView extends AbstractView {
         g.fillRect(prefSize.width/2, prefSize.height/2, 200, 200);
 
         // Default Colour
-        g.setColor(Color.BLACK);
-        g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, 0, 360);
+        // g.setColor(Color.BLACK);
+        // g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, 0, 360);
 
         // Set Colour depending on Car type and Percentage
         g.setColor(Color.RED);
@@ -63,7 +63,7 @@ public class CarPieView extends AbstractView {
         g.setColor(Color.BLUE);
         g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, (int)ticketAngle, (int)parkPassAngle);
         g.setColor(Color.ORANGE);
-        g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, (int)parkPassAngle + (int)ticketAngle, (int)reservationAngle);
+        g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, (int)parkPassAngle, (int)reservationAngle);
 
         /*
         int aantal=getModel().getAantal();
