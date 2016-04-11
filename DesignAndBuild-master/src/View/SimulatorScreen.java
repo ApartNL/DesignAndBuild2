@@ -16,6 +16,7 @@ public class SimulatorScreen extends JFrame {
 
     private Simulator sim;
     private Container container;
+    private Image im = Toolkit.getDefaultToolkit().getImage("CityParkingGroningen_120x40.png");
 
     public SimulatorScreen( Simulator sim) {
 
@@ -27,16 +28,22 @@ public class SimulatorScreen extends JFrame {
         this.setPreferredSize(new Dimension(1200, 800));
 
         this.setLayout(new BorderLayout());
+        this.setTitle("City Parking Groningen - Simulator");
+        this.setIconImage(im);
+
+        this.setResizable(false);
 
         CarParkView carParkView = new CarParkView(sim);
         CarPieView carPieView = new CarPieView(sim);
+        // CarLineGraphView carLineGraphView = new CarLineGraphView(sim);
         InformationView informationView = new InformationView(sim);
         SimulatorController simulatorController = new SimulatorController(sim);
 
         JPanel tabbedViewPanel = new JPanel();
         JTabbedPane tabContainer = new JTabbedPane();
-        tabContainer.addTab("Parking Space", carParkView);
-        tabContainer.addTab("#Cars Pie chart", carPieView);
+        tabContainer.addTab("Simulator", carParkView);
+        tabContainer.addTab("Pie Chart", carPieView);
+        // tabContainer.addTab("Line Graph", carLineGraphView);
 
         tabbedViewPanel.add(tabContainer);
 

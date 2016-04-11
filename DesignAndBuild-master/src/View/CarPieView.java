@@ -40,9 +40,9 @@ public class CarPieView extends AbstractView {
 
         int totalAmountOfCars = this.ticketCars + this.parkPassCars + this.ticketCars;
         // Percentage berekenen
-        float percentageTicket = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : totalAmountOfCars/100 * ticketCars;
-        float percentageParkPass = totalAmountOfCars <= 0 || this.parkPassCars <= 0 ? 0 : totalAmountOfCars/100 * parkPassCars;
-        float percentageReservation = totalAmountOfCars <= 0 || this.reservationCars <= 0 ? 0 : totalAmountOfCars/100 * reservationCars;
+        float percentageTicket = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : totalAmountOfCars/ticketCars * 100;
+        float percentageParkPass = totalAmountOfCars <= 0 || this.parkPassCars <= 0 ? 0 : totalAmountOfCars/parkPassCars * 100;
+        float percentageReservation = totalAmountOfCars <= 0 || this.reservationCars <= 0 ? 0 : totalAmountOfCars/reservationCars * 100;
 
         // Hoek berekenen
         float ticketAngle = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : 360/100*percentageTicket;
