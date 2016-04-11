@@ -38,11 +38,11 @@ public class CarPieView extends AbstractView {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        int totalAmountOfCars = this.ticketCars + this.parkPassCars + this.ticketCars;
+        int totalAmountOfCars = sim.getTotalNumberOfCars();
         // Percentage berekenen
-        float percentageTicket = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : 100/totalAmountOfCars * ticketCars;
-        float percentageParkPass = totalAmountOfCars <= 0 || this.parkPassCars <= 0 ? 0 : 100/totalAmountOfCars * parkPassCars;
-        float percentageReservation = totalAmountOfCars <= 0 || this.reservationCars <= 0 ? 0 : 100/totalAmountOfCars * reservationCars;
+        float percentageTicket = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : 100/totalAmountOfCars * this.ticketCars;
+        float percentageParkPass = totalAmountOfCars <= 0 || this.parkPassCars <= 0 ? 0 : 100/totalAmountOfCars * this.parkPassCars;
+        float percentageReservation = totalAmountOfCars <= 0 || this.reservationCars <= 0 ? 0 : 100/totalAmountOfCars * this.reservationCars;
 
         // Hoek berekenen
         float ticketAngle = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : 360/100*percentageTicket;
@@ -54,8 +54,8 @@ public class CarPieView extends AbstractView {
         g.fillRect(prefSize.width/2, prefSize.height/2, 200, 200);
 
         // Default Colour
-        // g.setColor(Color.BLACK);
-        // g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, 0, 360);
+        g.setColor(Color.BLACK);
+        g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, 0, 360);
 
         // Set Colour depending on Car type and Percentage
         g.setColor(Color.RED);
@@ -64,6 +64,8 @@ public class CarPieView extends AbstractView {
         g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, (int)ticketAngle, (int)parkPassAngle);
         g.setColor(Color.ORANGE);
         g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, (int)parkPassAngle, (int)reservationAngle);
+
+        System.out.println(this.ticketCars + this.parkPassCars + this.reservationCars);
 
         /*
         int aantal=getModel().getAantal();
