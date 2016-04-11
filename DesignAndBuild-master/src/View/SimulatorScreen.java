@@ -35,7 +35,7 @@ public class SimulatorScreen extends JFrame {
 
         CarParkView carParkView = new CarParkView(sim);
         CarPieView carPieView = new CarPieView(sim);
-        CarLineGraphView carLineGraphView = new CarLineGraphView(sim);
+        // CarLineGraphView carLineGraphView = new CarLineGraphView(sim);
         InformationView informationView = new InformationView(sim);
         SimulatorController simulatorController = new SimulatorController(sim);
 
@@ -43,7 +43,7 @@ public class SimulatorScreen extends JFrame {
         JTabbedPane tabContainer = new JTabbedPane();
         tabContainer.addTab("Simulator", carParkView);
         tabContainer.addTab("Pie Chart", carPieView);
-        tabContainer.addTab("Line Graph", carLineGraphView);
+        // tabContainer.addTab("Line Graph", carLineGraphView);
 
         tabbedViewPanel.add(tabContainer);
 
