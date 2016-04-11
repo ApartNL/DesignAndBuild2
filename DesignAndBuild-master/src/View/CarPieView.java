@@ -30,7 +30,7 @@ public class CarPieView extends AbstractView {
         sim.countAllCars();
         this.adhocCars = sim.getTotalNumberOfTicketCars();
         this.parkpassCars = sim.getTotalNumberOfParkingPassCars();
-        this.reservationCars = sim.getTotalNumberOfCars(); //TODO: make reservation cars amount getter
+        this.reservationCars = sim.getTotalNumberOfReservationCars();
         this.repaint();
     }
 
@@ -57,7 +57,7 @@ public class CarPieView extends AbstractView {
         g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, 0, (int)adhocAngle);
         g.setColor(Color.BLUE);
         g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, (int)adhocAngle, (int)parkpassAngle);
-        g.setColor(Color.BLUE);
+        g.setColor(Color.ORANGE);
         g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, (int)parkpassAngle, (int)reservationAngle);
 
         /*

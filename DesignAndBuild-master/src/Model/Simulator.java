@@ -56,6 +56,10 @@ public class Simulator implements Runnable{
     private int totalNumberOfCars;
     private int totalNumberOfTicketCars;
     private int totalNumberOfParkingPassCars;
+    /**
+     * Pascal@11/04/2016 - Hoeveel gereserveerd plaatsen er zijn.
+     */
+    private int totalNumberOfReservationCars;
 
     private Random random;
 
@@ -281,6 +285,7 @@ public class Simulator implements Runnable{
         totalNumberOfCars = 0;
         totalNumberOfTicketCars = 0;
         totalNumberOfParkingPassCars = 0;
+        totalNumberOfReservationCars = 0;
 
         for(int floor = 0; floor < this.numberOfFloors; floor++){
             for(int row = 0; row < this.numberOfRows; row++)     {
@@ -290,6 +295,8 @@ public class Simulator implements Runnable{
                         totalNumberOfCars++;
                         if(car instanceof ParkPassCar){
                             totalNumberOfParkingPassCars++;
+                        } else if(car instanceof ReservationCar) {
+                            totalNumberOfReservationCars++;
                         } else {
                             totalNumberOfTicketCars++;
                         }
@@ -396,6 +403,10 @@ public class Simulator implements Runnable{
 
     public int getTotalNumberOfParkingPassCars() {
         return totalNumberOfParkingPassCars;
+    }
+
+    public int getTotalNumberOfReservationCars() {
+        return totalNumberOfReservationCars;
     }
 
     public int getParkingPassCarsEntranceCarQueueAmount() {

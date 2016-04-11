@@ -1,5 +1,11 @@
 package Logic;
 
+/**
+ * Public class for PaymentMachine. This defines the pricing of the tickets, parking passes and reservations of parking spaces
+ * @author      327278, 331048, 335364 & 343991
+ * @version     11/04/2016
+ */
+
 public class PaymentMachine {
 
     public static final float DEFAULT_PARKPASS_DISCOUNT = 0.9f;
@@ -22,8 +28,11 @@ public class PaymentMachine {
     private int parkpassCars;
     private int reservationCars;
 
+    /**
+     * Constructor for class PaymentMachine
+     */
     public PaymentMachine() {
-        this(PaymentMachine.DEFAULT_NORMAL_CAR_PRICE, PaymentMachine.DEFAULT_PARKPASS_CAR_PRICE, PaymentMachine.DEFAULT_RESERVATION_DISCOUNT);
+        this(PaymentMachine.DEFAULT_NORMAL_CAR_PRICE, PaymentMachine.DEFAULT_PARKPASS_CAR_PRICE, PaymentMachine.DEFAULT_RESERVATION_CAR_PRICE);
     }
 
     public PaymentMachine(float normalCarPrice, float parkpassCarPrice, float reservationCarPrice) {
