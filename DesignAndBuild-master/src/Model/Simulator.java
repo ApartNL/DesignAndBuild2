@@ -65,6 +65,7 @@ public class Simulator implements Runnable{
 
 
     public Simulator() {
+
         simulatorViews = new LinkedList<AbstractView>();
 
         entranceCarQueue = new CarQueue();
