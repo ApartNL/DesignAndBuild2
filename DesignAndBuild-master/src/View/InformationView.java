@@ -31,6 +31,11 @@ public class InformationView extends AbstractView {
     private static final String LABEL_LEGENDA_EMPTY_SPOT                            = "Empty Spots";
     private static final String LABEL_LEGEND                                      = "Legend:";
     private static final String LABEL_EMPTY                                       = " ";
+    private static final String LABEL_EMPTY2                                       = " ";
+    private static final String LABEL_EMPTY3                                       = " ";
+    private static final String LABEL_EMPTY4                                       = " ";
+    private static final String LABEL_EMPTY5                                       = " ";
+
 
     private JLabel label_totalAmountOfCars;
     private JLabel label_carsWithParkingPass;
@@ -54,6 +59,11 @@ public class InformationView extends AbstractView {
     private JLabel label_emptyspot;
     private JLabel label_legend;
     private JLabel label_empty;
+    private JLabel label_empty2;
+    private JLabel label_empty3;
+    private JLabel label_empty4;
+    private JLabel label_empty5;
+
 
     private JLabel totalAmountOfCars;
     private JLabel carsWithParkingPass;
@@ -77,6 +87,11 @@ public class InformationView extends AbstractView {
     private JLabel emptyspot;
     private JLabel legend;
     private JLabel empty;
+    private JLabel empty2;
+    private JLabel empty3;
+    private JLabel empty4;
+    private JLabel empty5;
+
 
 
     public InformationView(Simulator sim) {
@@ -106,6 +121,10 @@ public class InformationView extends AbstractView {
         this.label_emptyspot = new JLabel(InformationView.LABEL_LEGENDA_EMPTY_SPOT);
         this.label_legend = new JLabel(InformationView.LABEL_LEGEND);
         this.label_empty = new JLabel(InformationView.LABEL_EMPTY);
+        this.label_empty2 = new JLabel(InformationView.LABEL_EMPTY2);
+        this.label_empty3 = new JLabel(InformationView.LABEL_EMPTY3);
+        this.label_empty4 = new JLabel(InformationView.LABEL_EMPTY4);
+        this.label_empty5 = new JLabel(InformationView.LABEL_EMPTY5);
 
         this.totalAmountOfCars              = new JLabel("0");
         this.carsWithParkingPass            = new JLabel("0");
@@ -146,8 +165,13 @@ public class InformationView extends AbstractView {
         this.reservationspot.setOpaque(true);
 
         this.empty = new JLabel();
+        this.empty2 = new JLabel();
+        this.empty3 = new JLabel();
+        this.empty4 = new JLabel();
+        this.empty5 = new JLabel();
 
-        this.setLayout(new GridLayout(22,2));
+
+        this.setLayout(new GridLayout(27,2));
 
 
 
@@ -170,6 +194,10 @@ public class InformationView extends AbstractView {
 
         this.add(label_time);
         this.add(time);
+
+        this.add(label_empty2);
+        this.add(empty2);
+
         this.add(label_totalAmountOfCars);
         this.add(totalAmountOfCars);
         this.add(label_carsWithParkingPass);
@@ -178,6 +206,10 @@ public class InformationView extends AbstractView {
         this.add(carsWithTickets);
         this.add(label_carsWithReservations);
         this.add(carsWithReservations);
+
+        this.add(label_empty3);
+        this.add(empty3);
+
         this.add(label_amountOfCarsInEntranceQueue);
         this.add(amountOfCarsInEntranceQueue);
         this.add(label_amountOfCarsInExitQueue);
@@ -190,6 +222,10 @@ public class InformationView extends AbstractView {
         this.add(amountOfReservationCarsInEntranceQueue);
         this.add(label_amountOfReservationCarsInExitQueue);
         this.add(amountOfReservationCarsInExitQueue);
+
+        this.add(label_empty4);
+        this.add(empty4);
+
         this.add(label_totalAmountOfRevenue);
         this.add(totalAmountOfRevenue);
         this.add(label_amountOfTicketCarRevenue);
@@ -198,6 +234,9 @@ public class InformationView extends AbstractView {
         this.add(amountOfParkpassCarRevenue);
         this.add(label_amountOfReservationCarRevenue);
         this.add(amountOfReservationCarRevenue);
+
+        this.add(label_empty5);
+        this.add(empty5);
 
 
     }
