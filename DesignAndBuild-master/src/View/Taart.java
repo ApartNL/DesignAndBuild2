@@ -3,7 +3,8 @@ package View;
 /**
  * Created by xavier on 11-4-2016.
  */
-import javafx.application.Application;
+import Model.Simulator;
+// import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -11,9 +12,37 @@ import javafx.stage.Stage;
 import javafx.scene.chart.*;
 import javafx.scene.Group;
 
-public class Taart extends Application {
+public class Taart extends AbstractView {
 
-    @Override public void start(Stage stage) {
+    private int ticketCars;
+    private int parkPassCars;
+    private int reservationCars;
+    private int totalAmountOfCars;
+    private double onePercent;
+
+    public Taart (Simulator sim) {
+        super(sim);
+        this.ticketCars = 0;
+        this.parkPassCars = 0;
+        this.reservationCars = 0;
+
+    }
+
+    @Override public void updateView() {
+        sim.countAllCars();
+        this.ticketCars = sim.getTotalNumberOfTicketCars();
+        this.parkPassCars = sim.getTotalNumberOfParkingPassCars();
+        this.reservationCars = sim.getTotalNumberOfReservationCars();
+        this.totalAmountOfCars = ticketCars + parkPassCars + reservationCars;
+        if(totalAmountOfCars > 0) {
+            this.onePercent = 100.0 / totalAmountOfCars;
+        } else {
+            this.onePercent = 100.0;
+        }
+        this.repaint();
+    }
+
+    public void start(Stage stage) {
         Scene scene = new Scene(new Group());
         stage.setTitle("Total Car Overview");
         stage.setWidth(500);
@@ -30,9 +59,5 @@ public class Taart extends Application {
         ((Group) scene.getRoot()).getChildren().add(chart);
         stage.setScene(scene);
         stage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

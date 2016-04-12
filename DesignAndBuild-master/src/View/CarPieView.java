@@ -9,12 +9,15 @@ public class CarPieView extends AbstractView {
     private int ticketCars;
     private int parkPassCars;
     private int reservationCars;
+    private int totalAmountOfCars;
+    private double onePercent;
 
     public CarPieView(Simulator sim) {
         super(sim);
         this.ticketCars = 0;
         this.parkPassCars = 0;
         this.reservationCars = 0;
+
     }
 
     /**
@@ -31,42 +34,50 @@ public class CarPieView extends AbstractView {
         this.ticketCars = sim.getTotalNumberOfTicketCars();
         this.parkPassCars = sim.getTotalNumberOfParkingPassCars();
         this.reservationCars = sim.getTotalNumberOfReservationCars();
+        this.totalAmountOfCars = ticketCars + parkPassCars + reservationCars;
+        if(totalAmountOfCars > 0) {
+            this.onePercent = 100.0 / totalAmountOfCars;
+        } else {
+            this.onePercent = 100.0;
+        }
         this.repaint();
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        if(totalAmountOfCars > 0) {
+            // Percentage berekenen
+            float percentageTicket = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : (float) (onePercent * this.ticketCars);
+            float percentageParkPass = totalAmountOfCars <= 0 || this.parkPassCars <= 0 ? 0 : (float) (onePercent * this.parkPassCars);
+            float percentageReservation = totalAmountOfCars <= 0 || this.reservationCars <= 0 ? 0 : (float) (onePercent * this.reservationCars);
 
-        int totalAmountOfCars = sim.getTotalNumberOfCars();
-        // Percentage berekenen
-        float percentageTicket = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : 100/totalAmountOfCars * this.ticketCars;
-        float percentageParkPass = totalAmountOfCars <= 0 || this.parkPassCars <= 0 ? 0 : 100/totalAmountOfCars * this.parkPassCars;
-        float percentageReservation = totalAmountOfCars <= 0 || this.reservationCars <= 0 ? 0 : 100/totalAmountOfCars * this.reservationCars;
+            double calc = 3.6;
+            // Hoek berekenen
+            float ticketAngle = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : (float) calc * percentageTicket;
+            float parkPassAngle = totalAmountOfCars <= 0 || this.parkPassCars <= 0 ? 0 : (float) calc * percentageParkPass;
+            float reservationAngle = totalAmountOfCars <= 0 || this.reservationCars <= 0 ? 0 : (float) calc * percentageReservation;
 
-        // Hoek berekenen
-        float ticketAngle = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : 360/100*percentageTicket;
-        float parkPassAngle = totalAmountOfCars <= 0 || this.parkPassCars <= 0 ? 0 : 360/100*percentageParkPass;
-        float reservationAngle = totalAmountOfCars <= 0 || this.reservationCars <= 0 ? 0 : 360/100*percentageReservation;
+            Dimension prefSize = this.getPreferredSize();
+            g.setColor(Color.WHITE);
+            g.fillRect(prefSize.width / 2, prefSize.height / 2, 200, 200);
 
-        Dimension prefSize = this.getPreferredSize();
-        g.setColor(Color.WHITE);
-        g.fillRect(prefSize.width/2, prefSize.height/2, 200, 200);
+            // Default Colour
+            g.setColor(Color.BLACK);
+            g.fillArc(prefSize.width / 2 + 10, prefSize.height / 2 + 10, 180, 180, 0, 360);
 
-        // Default Colour
-        g.setColor(Color.BLACK);
-        g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, 0, 360);
+            // Set Colour depending on Car type and Percentage
+            g.setColor(Color.RED);
+            g.fillArc(prefSize.width / 2 + 10, prefSize.height / 2 + 10, 180, 180, 0, (int) ticketAngle);
+            g.setColor(Color.BLUE);
+            g.fillArc(prefSize.width / 2 + 10, prefSize.height / 2 + 10, 180, 180, (int) ticketAngle, (int) parkPassAngle);
+            g.setColor(Color.ORANGE);
+            g.fillArc(prefSize.width / 2 + 10, prefSize.height / 2 + 10, 180, 180, (int) ticketAngle + (int) parkPassAngle, (int) reservationAngle);
 
-        // Set Colour depending on Car type and Percentage
-        g.setColor(Color.RED);
-        g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, 0,(int)ticketAngle);
-        g.setColor(Color.BLUE);
-        g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, (int)ticketAngle, (int)parkPassAngle);
-        g.setColor(Color.ORANGE);
-        g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, (int)parkPassAngle, (int)reservationAngle);
+            System.out.println((int) ticketAngle + " " + (int) parkPassAngle + " " + (int) reservationAngle);
+        } else {
 
-        System.out.println(this.ticketCars + this.parkPassCars + this.reservationCars);
-
+        }
         /*
         int aantal=getModel().getAantal();
         g.setColor(Color.BLUE);
