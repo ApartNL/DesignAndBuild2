@@ -36,16 +36,16 @@ public class SimulatorScreen extends JFrame {
         // Create new views
         CarParkView carParkView = new CarParkView(sim);
         CarPieView carPieView = new CarPieView(sim);
-        // CarLineGraphView carLineGraphView = new CarLineGraphView(sim);
+        CarLineGraphView carLineGraphView = new CarLineGraphView(sim);
         InformationView informationView = new InformationView(sim);
-        ImageView imageView = new ImageView(sim);
+        LogoView logoView = new LogoView(sim);
         SimulatorController simulatorController = new SimulatorController(sim);
 
         JPanel tabbedViewPanel = new JPanel();
         JTabbedPane tabContainer = new JTabbedPane();
         tabContainer.addTab("Simulator", carParkView);
         tabContainer.addTab("Pie Chart", carPieView);
-        // tabContainer.addTab("Line Graph", carLineGraphView);
+        tabContainer.addTab("Line Graph", carLineGraphView);
 
         tabbedViewPanel.add(tabContainer);
 
@@ -53,7 +53,7 @@ public class SimulatorScreen extends JFrame {
         eastContainerPanel.setLayout(new BorderLayout());
         eastContainerPanel.add(simulatorController, BorderLayout.NORTH);
         eastContainerPanel.add(informationView, BorderLayout.SOUTH);
-        eastContainerPanel.add(imageView, BorderLayout.CENTER);
+        eastContainerPanel.add(logoView, BorderLayout.CENTER);
 
         container.add(tabbedViewPanel, BorderLayout.CENTER);
         container.add(eastContainerPanel, BorderLayout.EAST);
