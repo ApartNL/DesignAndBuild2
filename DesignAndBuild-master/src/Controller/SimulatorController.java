@@ -20,6 +20,8 @@ public class SimulatorController extends JPanel {
     private JButton hundredTimeRunButton;
     private JButton oneHourTimeRunButton;
     private JButton dayTickRunButton;
+    private JButton fullRunButton;
+
 
     public SimulatorController(Simulator sim) {
 
@@ -29,6 +31,9 @@ public class SimulatorController extends JPanel {
         hundredTimeRunButton = new JButton("Run 100 times");
         oneHourTimeRunButton = new JButton("Run 1 hour");
         dayTickRunButton = new JButton("Run 1 Day");
+        fullRunButton = new JButton("Start Running");
+
+
 
         OneTimeRunEvent oneTimeRunEvent = new OneTimeRunEvent();
         oneTimeRunButton.addActionListener(oneTimeRunEvent);
@@ -41,17 +46,26 @@ public class SimulatorController extends JPanel {
 
         DayTickRunEvent dayTickRunEvent = new DayTickRunEvent();
         dayTickRunButton.addActionListener(dayTickRunEvent);
+
+        FullRunEvent fullRunEvent = new FullRunEvent();
+        fullRunButton.addActionListener(fullRunEvent);
+
+
+
 //setting preferred size of the buttons
         setLayout(new BorderLayout());
         oneTimeRunButton.setMinimumSize(new Dimension(100, 50));
         hundredTimeRunButton.setMinimumSize(new Dimension(100, 50));
         oneHourTimeRunButton.setMinimumSize(new Dimension(100, 50));
         dayTickRunButton.setMinimumSize(new Dimension(100, 50));
+        fullRunButton.setMinimumSize(new Dimension(100, 50));
+
 //position of the buttons
         add(oneTimeRunButton, BorderLayout.LINE_START);
         add(hundredTimeRunButton, BorderLayout.LINE_END);
         add(oneHourTimeRunButton, BorderLayout.CENTER);
         add(dayTickRunButton, BorderLayout.SOUTH);
+        add(fullRunButton, BorderLayout.NORTH);
 
         setMinimumSize(new Dimension(100, 100));
 //adding actions to the buttons making them able to be used.
@@ -76,4 +90,9 @@ public class SimulatorController extends JPanel {
     private class DayTickRunEvent implements  ActionListener {
         public void actionPerformed(ActionEvent d) { sim.dayTicks(); }
     }
+
+    private class FullRunEvent implements  ActionListener {
+        public void actionPerformed(ActionEvent e) { sim.fullRun(); }
+    }
+
 }

@@ -120,6 +120,9 @@ public class Simulator implements Runnable{
         ticksToDo++;
     }
 
+    public void fullRun() { ticksToDo +=40320;}
+
+
     public void run() {
         running = true;
         try{
