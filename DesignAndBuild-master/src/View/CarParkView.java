@@ -9,6 +9,7 @@ public class CarParkView extends AbstractView {
 
     private Dimension size;
     private Image carParkImage;
+    private boolean isReserved;
 
     /**
      * Constructor for objects of class CarPark
@@ -46,6 +47,14 @@ public class CarParkView extends AbstractView {
         }
     }
 
+    public boolean getIsReserved() {
+        return isReserved;
+    }
+
+    public void setIsReserved(boolean isReserved) {
+        this.isReserved = isReserved;
+    }
+
     public void updateView() {
         // Create a new car park image if the size has changed.
         if (!size.equals(getSize())) {
@@ -58,8 +67,19 @@ public class CarParkView extends AbstractView {
                 for(int place = 0; place < sim.getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
                     Car car = sim.getCarAt(location);
+                    if (row == sim.getNumberOfRows()-1){
+                        setIsReserved(true);
+                    }
+                    else{
+                        setIsReserved(false);
+                    }
+
+
                     Color color ;
-                    if(car == null){
+                    if(getIsReserved() && car==null){
+                        color = Color.black;
+                    }
+                   else if(car == null){
                         color = Color.white;
                     } else if(car instanceof AdHocCar){
                         color = Color.red;

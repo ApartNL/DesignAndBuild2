@@ -141,10 +141,10 @@ public class InformationView extends AbstractView {
         this.amountOfParkpassCarsInExitQueue.setText(sim.getParkingpassCarsExitQueueAmount() + " cars");
         this.amountOfReservationCarsInEntranceQueue.setText(sim.getReservationCarsEntranceQueueAmount() + " cars");
         this.amountOfReservationCarsInExitQueue.setText(sim.getReservationCarsExitCarQueue() + " cars");
-        this.totalAmountOfRevenue.setText(sim.getTotalRevenue() + " revenue");
-        this.amountOfTicketCarRevenue.setText(sim.getTicketCarRevenue() + " revenue");
-        this.amountOfParkpassCarRevenue.setText(sim.getParkpassCarRevenue()+ " revenue");
-        this.amountOfReservationCarRevenue.setText(sim.getReservationCarRevenue() + " revenue");
+        this.totalAmountOfRevenue.setText("€ " + sim.getTotalRevenue());
+        this.amountOfTicketCarRevenue.setText("€ " + sim.getTicketCarRevenue());
+        this.amountOfParkpassCarRevenue.setText("€ " + sim.getParkpassCarRevenue());
+        this.amountOfReservationCarRevenue.setText("€ " + sim.getReservationCarRevenue());
         this.time.setText(sim.getDay() + " " + sim.getHour() + ":" + sim.getMinute());
     }
 }

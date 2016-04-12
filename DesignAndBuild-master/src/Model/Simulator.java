@@ -44,7 +44,7 @@ public class Simulator implements Runnable{
 
     private int reservationPerDay = 1;
 
-    private int weekDayArrivals= 30; // average number of arriving cars per hour
+    private int weekDayArrivals= 50; // average number of arriving cars per hour
     private int weekendArrivals = 60; // average number of arriving cars per hour
     private int Concert = 300; // average number of arriving cars per hour
     private int atNight = 1; // average number of arriving cars per hour
@@ -98,7 +98,7 @@ public class Simulator implements Runnable{
         ticksToDo = 0;
 
         day = 4;
-        hour = 18;
+        hour = 15;
         minute = 0;
 
         running = false;
@@ -142,7 +142,7 @@ public class Simulator implements Runnable{
         Random r = new Random();
         int Low = 30;
         int High = 40;
-        int Result = r.nextInt(High-Low) + Low;
+        int Result = r.nextInt(High-Low);
 
         if (hour >21){
             stayMinutes = (15 + Result);
@@ -177,40 +177,21 @@ public class Simulator implements Runnable{
 
         int averageNumberOfCarsPerHour = 0;
         if(hour == 19 && day >=4 && day <= 6) {
-
             averageNumberOfCarsPerHour = Concert;
-
         }
-
-        else if(day == 5 || day == 6 )
-        {
-
+        else if((day == 5 || day == 6) && hour >6 && hour <19 ) {
             averageNumberOfCarsPerHour = weekendArrivals;
-
         }
-
-        else if(hour >= 22 || hour<7 && day >= 4 && day <= 6)
-        {
-
+        else if(day > 3 && day <7 && (hour > 22 || hour <6)) {
             averageNumberOfCarsPerHour = atNightconcert;
-
         }
-
-        else if(hour >= 18 && hour<20 && day == 3 )
-        {
-
+        else if(hour >= 18 && hour<20 && day == 3 ) {
             averageNumberOfCarsPerHour = shoppingNight;
-
         }
-
         else if(day >= 0 && day <=3 && hour > 18 && hour <6){
             averageNumberOfCarsPerHour = atNight;
         }
-
-
-
         else{
-
             averageNumberOfCarsPerHour = weekDayArrivals;
         }
 
@@ -231,13 +212,13 @@ public class Simulator implements Runnable{
         for (int i = 0; i < numberOfCarsPerMinute; i++) {
             double randomD = random.nextDouble();
             System.out.println("RandomD : " + randomD);
-            if (randomD <= 0.3){
+            if (randomD <= 0.15){
                 Car reservedCar = new ReservationCar();
                 specialEntranceCarQueue.addCar(reservedCar);
                 paymentMachine.pay(reservedCar);
-            } else if(randomD > 0.3 && randomD <=0.6){
+            } else if(randomD >= 0.16 && randomD <=0.33){
                 System.out.println("Adding parkpass car!");
-                specialEntranceCarQueue.addCar(new ParkPassCar());
+                entranceCarQueue.addCar(new ParkPassCar());
             } else {
                 entranceCarQueue.addCar(new AdHocCar());
             }
@@ -264,7 +245,7 @@ public class Simulator implements Runnable{
                 }
             } else if((specialEntranceCarQueue.peek() != null)) {
                 Car specialCar = specialEntranceCarQueue.peek();
-                if(this.parkCarAtRandomLocation(specialCar)){
+                if(this.parkCarAtReservedLocation(specialCar)){
                     specialEntranceCarQueue.removeCar();
                     specialCars++;
                 }
@@ -338,19 +319,20 @@ public class Simulator implements Runnable{
         this.simulatorViews.add(viewToAdd);
     }
 
-    public boolean parkCarAtFirstFreeLocation(Car car){
-        Location freeLocation = getFirstFreeLocation();
+
+    public boolean parkCarAtRandomLocation(Car car){
+        Location freeLocation = getRandomFreeLocation();
         if (freeLocation != null) {
             int stayMinutes = getstayMinutes();
             car.setMinutesLeft(stayMinutes);
-            System.out.println("Parking car : " + car);
-            return setCarAt(freeLocation, car);
+            System.out.println("parking car : " + car);
+            return setCarAt (freeLocation, car);
         }
         return false;
     }
 
-    public boolean parkCarAtRandomLocation(Car car){
-        Location freeLocation = getRandomFreeLocation();
+    public boolean parkCarAtReservedLocation(Car car){
+        Location freeLocation = getReservedFreeLocation();
         if (freeLocation != null) {
             int stayMinutes = getstayMinutes();
             car.setMinutesLeft(stayMinutes);
