@@ -12,10 +12,10 @@ public class ImageView extends AbstractView {
         super(sim);
         this.image = new ImageIcon(getClass().getResource("../images/CityParkingGroningen_120x40.png"));
         this.imageLabel = new JLabel(image);
+        this.add(imageLabel);
     }
 
     @Override public void updateView() {
-        setLayout(new FlowLayout());
-        this.add(imageLabel);
+
     }
 }
