@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 public class SimulatorController extends JPanel {
 
     private Simulator sim;
-
+//creating JButtons
     private JButton oneTimeRunButton;
     private JButton hundredTimeRunButton;
     private JButton oneHourTimeRunButton;
@@ -41,20 +41,20 @@ public class SimulatorController extends JPanel {
 
         DayTickRunEvent dayTickRunEvent = new DayTickRunEvent();
         dayTickRunButton.addActionListener(dayTickRunEvent);
-
+//setting preferred size of the buttons
         setLayout(new BorderLayout());
         oneTimeRunButton.setMinimumSize(new Dimension(100, 50));
         hundredTimeRunButton.setMinimumSize(new Dimension(100, 50));
         oneHourTimeRunButton.setMinimumSize(new Dimension(100, 50));
         dayTickRunButton.setMinimumSize(new Dimension(100, 50));
-
-        add(oneTimeRunButton, BorderLayout.NORTH);
-        add(hundredTimeRunButton, BorderLayout.CENTER);
-        add(oneHourTimeRunButton, BorderLayout.SOUTH);
-        add(dayTickRunButton, BorderLayout.EAST);
+//position of the buttons
+        add(oneTimeRunButton, BorderLayout.LINE_START);
+        add(hundredTimeRunButton, BorderLayout.LINE_END);
+        add(oneHourTimeRunButton, BorderLayout.CENTER);
+        add(dayTickRunButton, BorderLayout.SOUTH);
 
         setMinimumSize(new Dimension(100, 100));
-
+//adding actions to the buttons making them able to be used.
     }
 
     private class OneTimeRunEvent implements ActionListener {
