@@ -47,25 +47,23 @@ public class CarPieView extends AbstractView {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         if(totalAmountOfCars > 0) {
-            // Percentage berekenen
+            // Calculate percentages
             float percentageTicket = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : (float) (onePercent * this.ticketCars);
             float percentageParkPass = totalAmountOfCars <= 0 || this.parkPassCars <= 0 ? 0 : (float) (onePercent * this.parkPassCars);
             float percentageReservation = totalAmountOfCars <= 0 || this.reservationCars <= 0 ? 0 : (float) (onePercent * this.reservationCars);
-
+            // Calculate one percent
             double calc = 3.6;
-            // Hoek berekenen
+            // Calculate arcAngle
             float ticketAngle = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : (float) calc * percentageTicket;
             float parkPassAngle = totalAmountOfCars <= 0 || this.parkPassCars <= 0 ? 0 : (float) calc * percentageParkPass;
             float reservationAngle = totalAmountOfCars <= 0 || this.reservationCars <= 0 ? 0 : (float) calc * percentageReservation;
-
+            // Set view dimensions
             Dimension prefSize = this.getPreferredSize();
             g.setColor(Color.WHITE);
-            g.fillRect(prefSize.width / 2, prefSize.height / 2, 200, 200);
-
+            g.fillRect(0, 0, 800, 500);
             // Default Colour
             g.setColor(Color.BLACK);
             g.fillArc(prefSize.width / 2 + 10, prefSize.height / 2 + 10, 180, 180, 0, 360);
-
             // Set Colour depending on Car type and Percentage
             g.setColor(Color.RED);
             g.fillArc(prefSize.width / 2 + 10, prefSize.height / 2 + 10, 180, 180, 0, (int) ticketAngle);
@@ -73,8 +71,11 @@ public class CarPieView extends AbstractView {
             g.fillArc(prefSize.width / 2 + 10, prefSize.height / 2 + 10, 180, 180, (int) ticketAngle, (int) parkPassAngle);
             g.setColor(Color.ORANGE);
             g.fillArc(prefSize.width / 2 + 10, prefSize.height / 2 + 10, 180, 180, (int) ticketAngle + (int) parkPassAngle, (int) reservationAngle);
-
-            System.out.println((int) ticketAngle + " " + (int) parkPassAngle + " " + (int) reservationAngle);
+            // Draw labels for the different types of Cars with percentages
+            g.setColor(Color.BLACK);
+            g.drawString("Tickets: " + (Float.toString((int)percentageTicket) + "%"), 460, 200);
+            g.drawString("ParkingPass: " + (Float.toString((int)percentageParkPass) + "%"), 460, 220);
+            g.drawString("Reservations: " + (Float.toString((int)percentageReservation) + "%"), 460, 240);
         } else {
 
         }
