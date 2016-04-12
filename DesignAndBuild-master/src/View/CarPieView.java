@@ -51,18 +51,24 @@ public class CarPieView extends AbstractView {
             float percentageTicket = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : (float) (onePercent * this.ticketCars);
             float percentageParkPass = totalAmountOfCars <= 0 || this.parkPassCars <= 0 ? 0 : (float) (onePercent * this.parkPassCars);
             float percentageReservation = totalAmountOfCars <= 0 || this.reservationCars <= 0 ? 0 : (float) (onePercent * this.reservationCars);
+            percentageTicket = Math.round(percentageTicket);
+            percentageParkPass = Math.round(percentageParkPass);
+            percentageReservation = Math.round(percentageReservation);
             // Calculate one percent
             double calc = 3.6;
             // Calculate arcAngle
             float ticketAngle = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : (float) calc * percentageTicket;
             float parkPassAngle = totalAmountOfCars <= 0 || this.parkPassCars <= 0 ? 0 : (float) calc * percentageParkPass;
             float reservationAngle = totalAmountOfCars <= 0 || this.reservationCars <= 0 ? 0 : (float) calc * percentageReservation;
+            ticketAngle = Math.round(ticketAngle);
+            parkPassAngle = Math.round(parkPassAngle);
+            reservationAngle = Math.round(reservationAngle);
             // Set view dimensions
             Dimension prefSize = this.getPreferredSize();
             g.setColor(Color.WHITE);
             g.fillRect(0, 0, 800, 500);
             // Default Colour
-            g.setColor(Color.BLACK);
+            g.setColor(Color.RED);
             g.fillArc(prefSize.width / 2 + 10, prefSize.height / 2 + 10, 180, 180, 0, 360);
             // Set Colour depending on Car type and Percentage
             g.setColor(Color.RED);
@@ -76,6 +82,8 @@ public class CarPieView extends AbstractView {
             g.drawString("Tickets: " + (Float.toString((int)percentageTicket) + "%"), 460, 200);
             g.drawString("ParkingPass: " + (Float.toString((int)percentageParkPass) + "%"), 460, 220);
             g.drawString("Reservations: " + (Float.toString((int)percentageReservation) + "%"), 460, 240);
+
+            System.out.println(ticketAngle + parkPassAngle + reservationAngle);
         } else {
 
         }
