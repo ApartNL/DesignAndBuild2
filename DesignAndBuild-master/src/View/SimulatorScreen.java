@@ -16,7 +16,7 @@ public class SimulatorScreen extends JFrame {
 
     private Simulator sim;
     private Container container;
-    private Image im = Toolkit.getDefaultToolkit().getImage("CityParkingGroningen_120x40.png");
+    private Image im = Toolkit.getDefaultToolkit().getImage("CityParkingIcon.png");
 
     public SimulatorScreen( Simulator sim) {
 
