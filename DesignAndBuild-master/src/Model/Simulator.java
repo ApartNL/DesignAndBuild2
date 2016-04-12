@@ -35,6 +35,7 @@ public class Simulator implements Runnable{
 
     private int ticksToDo;
 
+
     private int day = 0;
     private int hour = 0;
     private int minute = 0;
@@ -42,13 +43,19 @@ public class Simulator implements Runnable{
     private int tickPause = 100;
 
     private int reservationPerDay = 1;
+
     private int weekDayArrivals= 30; // average number of arriving cars per hour
     private int weekendArrivals = 60; // average number of arriving cars per hour
-    private int drukte = 300; // average number of arriving cars per hour
+    private int Concert = 300; // average number of arriving cars per hour
+    private int atNight = 1; // average number of arriving cars per hour
+    private int shoppingNight = 100;
+    private int atNightconcert = 3; // average number of arriving cars per hour
 
     private int enterSpeed = 10; // number of cars that can enter per minute
     private int paymentSpeed = 10; // number of cars that can pay per minute
     private int exitSpeed = 10; // number of cars that can leave per minute
+    private int stayMinutes = 0;
+
 
     private int numberOfFloors;
     private int numberOfRows;
@@ -62,11 +69,11 @@ public class Simulator implements Runnable{
      */
     private int totalNumberOfReservationCars;
 
+
     private Random random;
 
 
     public Simulator() {
-
         simulatorViews = new LinkedList<AbstractView>();
 
         entranceCarQueue = new CarQueue();
@@ -97,12 +104,12 @@ public class Simulator implements Runnable{
         running = false;
     }
 
-    public void dayTicks() {
-        ticksToDo += 1440;
-    }
-
     public void oneHour() {
         ticksToDo += 60;
+    }
+
+    public void dayTicks() {
+        ticksToDo += 1440;
     }
 
     public void hundredTicks() {
@@ -128,6 +135,21 @@ public class Simulator implements Runnable{
         }
     }
 
+    public int getstayMinutes() {
+        Random r = new Random();
+        int Low = 30;
+        int High = 40;
+        int Result = r.nextInt(High-Low) + Low;
+
+        if (hour >21){
+            stayMinutes = (15 + Result);
+        }
+        else{
+            stayMinutes = (int)  (15 + random.nextFloat() * 10 * 60);
+        }
+        return stayMinutes;
+    }
+
     public void tick() {
         // Advance the time by one minute.
         minute++;
@@ -143,19 +165,46 @@ public class Simulator implements Runnable{
             day -= 7;
         }
 
-        int averageNumberOfCarsPerHour = 0;
-        if(hour >= 19 && hour<20 && day >=4 && day <= 6) {
 
-            averageNumberOfCarsPerHour = drukte;
+
+        // Get the average number of cars that arrive per hour.
+
+
+
+
+        int averageNumberOfCarsPerHour = 0;
+        if(hour == 19 && day >=4 && day <= 6) {
+
+            averageNumberOfCarsPerHour = Concert;
 
         }
 
-        else if(day >= 5 && day <= 6 )
+        else if(day == 5 || day == 6 )
         {
 
             averageNumberOfCarsPerHour = weekendArrivals;
 
         }
+
+        else if(hour >= 22 || hour<7 && day >= 4 && day <= 6)
+        {
+
+            averageNumberOfCarsPerHour = atNightconcert;
+
+        }
+
+        else if(hour >= 18 && hour<20 && day == 3 )
+        {
+
+            averageNumberOfCarsPerHour = shoppingNight;
+
+        }
+
+        else if(day >= 0 && day <=3 && hour > 18 && hour <6){
+            averageNumberOfCarsPerHour = atNight;
+        }
+
+
 
         else{
 
@@ -163,15 +212,15 @@ public class Simulator implements Runnable{
         }
 
 
-        //Get the average number of cars that arrive per hour.
-        //int averageNumberOfCarsPerHour = day < 5
 
-//             ? weekDayArrivals
-  //              : weekendArrivals;
+
+
+
+
 
         // Calculate the number of cars that arrive this minute.
-        double standardDeviation =  averageNumberOfCarsPerHour * 0.1;
-        double numberOfCarsPerHour =  averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
+        double standardDeviation = averageNumberOfCarsPerHour * 0.1;
+        double numberOfCarsPerHour = averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
         int numberOfCarsPerMinute = (int)Math.round(numberOfCarsPerHour / 60);
 
 
@@ -206,13 +255,13 @@ public class Simulator implements Runnable{
             if((random.nextBoolean() || !normalCarsDone )&& (entranceCarQueue.peek() != null)){
                 Car normalCar = entranceCarQueue.peek();
                 // Find a space for this car.
-                if(this.parkCarAtFirstFreeLocation(normalCar)){
+                if(this.parkCarAtRandomLocation(normalCar)){
                     entranceCarQueue.removeCar();
                     normalCars++;
                 }
             } else if((specialEntranceCarQueue.peek() != null)) {
                 Car specialCar = specialEntranceCarQueue.peek();
-                if(this.parkCarAtFirstFreeLocation(specialCar)){
+                if(this.parkCarAtRandomLocation(specialCar)){
                     specialEntranceCarQueue.removeCar();
                     specialCars++;
                 }
@@ -257,16 +306,19 @@ public class Simulator implements Runnable{
             exitCarQueue.addCar(car);
         }
 
-        // Let cars leave.
-        for (int i = 0; i < exitSpeed; i++) {
-            // Bye!
-            if(exitCarQueue.peek() != null)
-                exitCarQueue.removeCar();
-            if((car = specialExitCarQueue.peek()) != null)
-                if(car instanceof ParkPassCar)
-                    paymentMachine.pay(car);
+
+
+            // Let cars leave.
+            for (int i = 0; i < exitSpeed; i++) {
+                // Bye!
+                if (exitCarQueue.peek() != null)
+                    exitCarQueue.removeCar();
+                if ((car = specialExitCarQueue.peek()) != null)
+                    if (car instanceof ParkPassCar)
+                        paymentMachine.pay(car);
                 specialExitCarQueue.removeCar();
-        }
+            }
+
 
         // Update the views
         this.updateViews();
@@ -286,10 +338,21 @@ public class Simulator implements Runnable{
     public boolean parkCarAtFirstFreeLocation(Car car){
         Location freeLocation = getFirstFreeLocation();
         if (freeLocation != null) {
-            int stayMinutes = (int) (15 + random.nextFloat() * 10 * 60);
+            int stayMinutes = getstayMinutes();
             car.setMinutesLeft(stayMinutes);
             System.out.println("Parking car : " + car);
             return setCarAt(freeLocation, car);
+        }
+        return false;
+    }
+
+    public boolean parkCarAtRandomLocation(Car car){
+        Location freeLocation = getRandomFreeLocation();
+        if (freeLocation != null) {
+            int stayMinutes = getstayMinutes();
+            car.setMinutesLeft(stayMinutes);
+            System.out.println("parking car : " + car);
+            return setCarAt (freeLocation, car);
         }
         return false;
     }
@@ -299,7 +362,6 @@ public class Simulator implements Runnable{
             view.updateView();
         }
     }
-
 
     public  String getDay() {
         String dayString ="";
@@ -320,15 +382,15 @@ public class Simulator implements Runnable{
                 break;
         }
 
-        return dayString;
+     return dayString;
     }
 
     public String getHour() {
-        if(hour < 10) {
-        return "0" + hour; }
+        if(hour <= 9) {
+            return "0" + hour; }
 
         else {
-    return "" + hour;
+            return "" + hour;
         }
     }
 
@@ -340,6 +402,7 @@ public class Simulator implements Runnable{
             return "" + minute;
         }
     }
+
 
     public int getNumberOfFloors() {
         return numberOfFloors;
@@ -417,6 +480,41 @@ public class Simulator implements Runnable{
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
                     if (getCarAt(location) == null) {
+                        return location;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public Location getRandomFreeLocation() {
+        Random randomGenerator = new Random();
+        int randomFloor = randomGenerator.nextInt(getNumberOfFloors());
+        int randomRow = randomGenerator.nextInt(getNumberOfRows());
+        int randomPlace = randomGenerator.nextInt(getNumberOfPlaces());
+        for (int floor = randomFloor; floor < getNumberOfFloors(); floor++) {
+            for (int row = randomRow; row < getNumberOfRows() - 1; row++) {
+                for (int place = randomPlace; place < getNumberOfPlaces(); place++) {
+                    Location location = new Location(floor, row, place);
+                    if (getCarAt(location) == null) {
+                        return location;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public Location getReservedFreeLocation() {
+        Random randomGenerator = new Random();
+        int randomFloor = randomGenerator.nextInt(getNumberOfFloors());
+        int randomPlace = randomGenerator.nextInt(getNumberOfPlaces());
+        for (int floor = randomFloor; floor < getNumberOfFloors(); floor++) {
+            for (int row = getNumberOfRows() - 1; row<getNumberOfRows(); row++) {
+                for (int place = randomPlace; place < getNumberOfPlaces(); place++) {
+                    Location location = new Location(floor, row, place);
+                    if (getCarAt(location) == null){
                         return location;
                     }
                 }
@@ -511,6 +609,8 @@ public class Simulator implements Runnable{
                 number++;
         return number;
     }
+
+
 
     private boolean locationIsValid(Location location) {
         int floor = location.getFloor();
