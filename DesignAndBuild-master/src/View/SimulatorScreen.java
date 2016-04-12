@@ -16,7 +16,7 @@ public class SimulatorScreen extends JFrame {
 
     private Simulator sim;
     private Container container;
-    private Image im = Toolkit.getDefaultToolkit().getImage("CityParkingIcon.png");
+    private Image im = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("src/Images/CityParkingIcon.png"));
 
     public SimulatorScreen( Simulator sim) {
 
@@ -25,7 +25,7 @@ public class SimulatorScreen extends JFrame {
         this.container = getContentPane();
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(1200, 800));
+        this.setPreferredSize(new Dimension(1200, 720));
 
         this.setLayout(new BorderLayout());
         this.setTitle("City Parking Groningen - Simulator");
@@ -33,10 +33,12 @@ public class SimulatorScreen extends JFrame {
 
         this.setResizable(false);
 
+        // Create new views
         CarParkView carParkView = new CarParkView(sim);
         CarPieView carPieView = new CarPieView(sim);
         // CarLineGraphView carLineGraphView = new CarLineGraphView(sim);
         InformationView informationView = new InformationView(sim);
+        ImageView imageView = new ImageView(sim);
         SimulatorController simulatorController = new SimulatorController(sim);
 
         JPanel tabbedViewPanel = new JPanel();
@@ -51,6 +53,7 @@ public class SimulatorScreen extends JFrame {
         eastContainerPanel.setLayout(new BorderLayout());
         eastContainerPanel.add(simulatorController, BorderLayout.NORTH);
         eastContainerPanel.add(informationView, BorderLayout.SOUTH);
+        eastContainerPanel.add(imageView, BorderLayout.CENTER);
 
         container.add(tabbedViewPanel, BorderLayout.CENTER);
         container.add(eastContainerPanel, BorderLayout.EAST);

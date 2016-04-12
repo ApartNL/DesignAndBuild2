@@ -7,35 +7,32 @@ import java.awt.*;
 
 public class InformationView extends AbstractView {
 
-
-
-    private static final String LABEL_TOTAL_AMOUNT_OF_CARS      = "Total cars :";
-    private static final String LABEL_CARS_WITH_PARKING_PASS    = "Parking pass cars :";
-    private static final String LABEL_CARS_WITH_TICKETS         = "Cars with tickets :";
-    private static final String LABEL_CARS_WITH_RESERVATIONS    = "Cars with a reservation: ";
-    private static final String LABEL_AMOUNT_OF_CARS_IN_ENTRANCE_QUEUE  = "Entrance queue :";
-    private static final String LABEL_AMOUNT_OF_CARS_IN_EXIT_QUEUE      = "Exit queue :";
-    private static final String LABEL_AMOUNT_OF_PARKPASS_CARS_IN_ENTRANCE_QUEUE  = "Parking pass entrance queue :";
-    private static final String LABEL_AMOUNT_OF_PARKPASS_CARS_IN_EXIT_QUEUE      = "Parking pass exit queue :";
-    private static final String LABEL_AMOUNT_OF_RESERVATION_CARS_IN_ENTRANCE_QUEUE  = "Reservation entrance queue :";
-    private static final String LABEL_AMOUNT_OF_RESERVATION_CARS_IN_EXIT_QUEUE      = "Reservation exit queue :";
-    private static final String LABEL_TOTAL_AMOUNT_OF_REVENUE                       = "Total revenue :";
-    private static final String LABEL_AMOUNT_OF_REVENUE_TICKET_CARS                 = "Ticket car revenue :";
-    private static final String LABEL_AMOUNT_OF_REVENUE_PARKPASS_CARS               = "Parkpass car revenue :";
-    private static final String LABEL_AMOUNT_OF_REVENUE_RESERVATION_CARS            = "Reservation car revenue :";
-    private static final String LABEL_TIME                                          = "Time :";
-    private static final String LABEL_LEGENDA_PARKPASS                              = "ParkPassHolders:";
-    private static final String LABEL_LEGENDA_TICKET                                = "TicketHolders";
-    private static final String LABEL_LEGENDA_RESERVATION                           = "Reservations";
-    private static final String LABEL_LEGENDA_RESORVED_SPOT                         = "Reserved Spots";
-    private static final String LABEL_LEGENDA_EMPTY_SPOT                            = "Empty Spots";
-    private static final String LABEL_LEGEND                                      = "Legend:";
-    private static final String LABEL_EMPTY                                       = " ";
-    private static final String LABEL_EMPTY2                                       = " ";
-    private static final String LABEL_EMPTY3                                       = " ";
-    private static final String LABEL_EMPTY4                                       = " ";
-    private static final String LABEL_EMPTY5                                       = " ";
-
+    private static final String LABEL_TOTAL_AMOUNT_OF_CARS                          = "Total Cars: ";
+    private static final String LABEL_CARS_WITH_PARKING_PASS                        = "Parking Passes: ";
+    private static final String LABEL_CARS_WITH_TICKETS                             = "Tickets: ";
+    private static final String LABEL_CARS_WITH_RESERVATIONS                        = "Reservations: ";
+    private static final String LABEL_AMOUNT_OF_CARS_IN_ENTRANCE_QUEUE              = "Entrance Queue: ";
+    private static final String LABEL_AMOUNT_OF_CARS_IN_EXIT_QUEUE                  = "Exit Queue: ";
+    private static final String LABEL_AMOUNT_OF_PARKPASS_CARS_IN_ENTRANCE_QUEUE     = "Parking Pass Entrance Queue: ";
+    private static final String LABEL_AMOUNT_OF_PARKPASS_CARS_IN_EXIT_QUEUE         = "Parking Pass Exit Queue: ";
+    private static final String LABEL_AMOUNT_OF_RESERVATION_CARS_IN_ENTRANCE_QUEUE  = "Reservation Entrance Queue: ";
+    private static final String LABEL_AMOUNT_OF_RESERVATION_CARS_IN_EXIT_QUEUE      = "Reservation Exit Queue: ";
+    private static final String LABEL_TOTAL_AMOUNT_OF_REVENUE                       = "Total Revenue: ";
+    private static final String LABEL_AMOUNT_OF_REVENUE_TICKET_CARS                 = "Ticket Car Revenue: ";
+    private static final String LABEL_AMOUNT_OF_REVENUE_PARKPASS_CARS               = "ParkPass Car Revenue: ";
+    private static final String LABEL_AMOUNT_OF_REVENUE_RESERVATION_CARS            = "Reservation Car Revenue: ";
+    private static final String LABEL_TIME                                          = "Time: ";
+    private static final String LABEL_LEGENDA_PARKPASS                              = "ParkPassHolders: ";
+    private static final String LABEL_LEGENDA_TICKET                                = "TicketHolders: ";
+    private static final String LABEL_LEGENDA_RESERVATION                           = "Reservations: ";
+    private static final String LABEL_LEGENDA_RESORVED_SPOT                         = "Reserved Spots: ";
+    private static final String LABEL_LEGENDA_EMPTY_SPOT                            = "Empty Spots: ";
+    private static final String LABEL_LEGEND                                        = "Legend:";
+    private static final String LABEL_EMPTY                                         = " ";
+    private static final String LABEL_EMPTY2                                        = " ";
+    private static final String LABEL_EMPTY3                                        = " ";
+    private static final String LABEL_EMPTY4                                        = " ";
+    private static final String LABEL_EMPTY5                                        = " ";
 
     private JLabel label_totalAmountOfCars;
     private JLabel label_carsWithParkingPass;
@@ -64,7 +61,6 @@ public class InformationView extends AbstractView {
     private JLabel label_empty4;
     private JLabel label_empty5;
 
-
     private JLabel totalAmountOfCars;
     private JLabel carsWithParkingPass;
     private JLabel carsWithTickets;
@@ -92,11 +88,8 @@ public class InformationView extends AbstractView {
     private JLabel empty4;
     private JLabel empty5;
 
-
-
     public InformationView(Simulator sim) {
         super(sim);
-
 
 
         this.label_totalAmountOfCars = new JLabel(InformationView.LABEL_TOTAL_AMOUNT_OF_CARS);
@@ -126,23 +119,23 @@ public class InformationView extends AbstractView {
         this.label_empty4 = new JLabel(InformationView.LABEL_EMPTY4);
         this.label_empty5 = new JLabel(InformationView.LABEL_EMPTY5);
 
-        this.totalAmountOfCars              = new JLabel("0");
-        this.carsWithParkingPass            = new JLabel("0");
-        this.carsWithTickets                = new JLabel("0");
-        this.carsWithReservations           = new JLabel("0");
-        this.amountOfCarsInEntranceQueue    = new JLabel("0");
-        this.amountOfCarsInExitQueue        = new JLabel("0");
-        this.amountOfReservationCarsInEntranceQueue    = new JLabel("0");
-        this.amountOfReservationCarsInExitQueue        = new JLabel("0");
-        this.amountOfParkpassCarsInEntranceQueue    = new JLabel("0");
-        this.amountOfParkpassCarsInExitQueue        = new JLabel("0");
+        this.totalAmountOfCars                          = new JLabel("0");
+        this.carsWithParkingPass                        = new JLabel("0");
+        this.carsWithTickets                            = new JLabel("0");
+        this.carsWithReservations                       = new JLabel("0");
+        this.amountOfCarsInEntranceQueue                = new JLabel("0");
+        this.amountOfCarsInExitQueue                    = new JLabel("0");
+        this.amountOfReservationCarsInEntranceQueue     = new JLabel("0");
+        this.amountOfReservationCarsInExitQueue         = new JLabel("0");
+        this.amountOfParkpassCarsInEntranceQueue        = new JLabel("0");
+        this.amountOfParkpassCarsInExitQueue            = new JLabel("0");
 
-        this.totalAmountOfRevenue       = new JLabel("0");
-        this.amountOfTicketCarRevenue = new JLabel("0");
-        this.amountOfParkpassCarRevenue = new JLabel("0");
-        this.amountOfReservationCarRevenue = new JLabel("0");
-        this.time = new JLabel("0");
-        this.legend = new JLabel();
+        this.totalAmountOfRevenue                       = new JLabel("0");
+        this.amountOfTicketCarRevenue                   = new JLabel("0");
+        this.amountOfParkpassCarRevenue                 = new JLabel("0");
+        this.amountOfReservationCarRevenue              = new JLabel("0");
+        this.time                                       = new JLabel("0");
+        this.legend                                     = new JLabel();
 
         this.ticket = new JLabel();
         this.ticket.setBackground(Color.red);
@@ -170,10 +163,7 @@ public class InformationView extends AbstractView {
         this.empty4 = new JLabel();
         this.empty5 = new JLabel();
 
-
         this.setLayout(new GridLayout(27,2));
-
-
 
         this.add(label_legend);
         this.add(legend);
@@ -244,7 +234,6 @@ public class InformationView extends AbstractView {
     @Override
     public void updateView() {
         this.sim.countAllCars();
-
 
         this.totalAmountOfCars.setText(sim.getTotalNumberOfCars() + " cars");
         this.carsWithParkingPass.setText(sim.getTotalNumberOfParkingPassCars() + " cars");
