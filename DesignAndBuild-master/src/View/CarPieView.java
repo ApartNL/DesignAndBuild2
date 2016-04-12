@@ -38,11 +38,11 @@ public class CarPieView extends AbstractView {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        int totalAmountOfCars = this.ticketCars + this.parkPassCars + this.ticketCars;
+        int totalAmountOfCars = sim.getTotalNumberOfCars();
         // Percentage berekenen
-        float percentageTicket = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : totalAmountOfCars/ticketCars * 100;
-        float percentageParkPass = totalAmountOfCars <= 0 || this.parkPassCars <= 0 ? 0 : totalAmountOfCars/parkPassCars * 100;
-        float percentageReservation = totalAmountOfCars <= 0 || this.reservationCars <= 0 ? 0 : totalAmountOfCars/reservationCars * 100;
+        float percentageTicket = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : 100/totalAmountOfCars * this.ticketCars;
+        float percentageParkPass = totalAmountOfCars <= 0 || this.parkPassCars <= 0 ? 0 : 100/totalAmountOfCars * this.parkPassCars;
+        float percentageReservation = totalAmountOfCars <= 0 || this.reservationCars <= 0 ? 0 : 100/totalAmountOfCars * this.reservationCars;
 
         // Hoek berekenen
         float ticketAngle = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : 360/100*percentageTicket;
@@ -63,7 +63,9 @@ public class CarPieView extends AbstractView {
         g.setColor(Color.BLUE);
         g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, (int)ticketAngle, (int)parkPassAngle);
         g.setColor(Color.ORANGE);
-        g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, (int)parkPassAngle + (int)ticketAngle, (int)reservationAngle);
+        g.fillArc(prefSize.width/2 + 10, prefSize.height/2 + 10, 180, 180, (int)parkPassAngle, (int)reservationAngle);
+
+        System.out.println(this.ticketCars + this.parkPassCars + this.reservationCars);
 
         /*
         int aantal=getModel().getAantal();
