@@ -1,7 +1,6 @@
 package View;
 
 import Model.Simulator;
-import javax.swing.*;
 import java.awt.*;
 
 public class CarLineGraphView extends AbstractView {
@@ -30,7 +29,6 @@ public class CarLineGraphView extends AbstractView {
         this.ticketCars = sim.getTotalNumberOfTicketCars();
         this.parkPassCars = sim.getTotalNumberOfParkingPassCars();
         this.reservationCars = sim.getTotalNumberOfReservationCars();
-        this.totalAmountOfCars = this.ticketCars + this.parkPassCars + this.reservationCars;
         this.repaint();
     }
     // This will draw a  Line Graph

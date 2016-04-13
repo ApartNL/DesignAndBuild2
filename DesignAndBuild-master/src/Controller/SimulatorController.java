@@ -8,14 +8,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
+ *
  * @author      327278, 331048, 335364 & 343991
- * @version     07-04-2016
+ * @version     13-04-2016
  */
 
 public class SimulatorController extends JPanel {
 
     private Simulator sim;
-//creating JButtons
+    //creating JButtons
     private JButton oneTimeRunButton;
     private JButton hundredTimeRunButton;
     private JButton oneHourTimeRunButton;
@@ -52,7 +53,7 @@ public class SimulatorController extends JPanel {
 
 
 
-//setting preferred size of the buttons
+        //setting preferred size of the buttons
         setLayout(new BorderLayout());
         oneTimeRunButton.setMinimumSize(new Dimension(100, 50));
         hundredTimeRunButton.setMinimumSize(new Dimension(100, 50));
@@ -60,7 +61,7 @@ public class SimulatorController extends JPanel {
         dayTickRunButton.setMinimumSize(new Dimension(100, 50));
         fullRunButton.setMinimumSize(new Dimension(100, 50));
 
-//position of the buttons
+        //position of the buttons
         add(oneTimeRunButton, BorderLayout.LINE_START);
         add(hundredTimeRunButton, BorderLayout.LINE_END);
         add(oneHourTimeRunButton, BorderLayout.CENTER);
@@ -68,31 +69,32 @@ public class SimulatorController extends JPanel {
         add(fullRunButton, BorderLayout.NORTH);
 
         setMinimumSize(new Dimension(100, 100));
-//adding actions to the buttons making them able to be used.
+
+        //adding actions to the buttons making them able to be used.
     }
 
-    private class OneTimeRunEvent implements ActionListener {
-        public void actionPerformed(ActionEvent a){
-            sim.singleTick();
-        }
-    }
-
-    private class HundredTimeRunEvent implements ActionListener {
-        public void actionPerformed(ActionEvent b) {
-            sim.hundredTicks();
-        }
-    }
-
-    private class OneHourTimeRunEvent implements  ActionListener {
-        public void actionPerformed(ActionEvent c) { sim.oneHour(); }
+        private class OneTimeRunEvent implements ActionListener {
+            public void actionPerformed(ActionEvent a){
+                sim.singleTick();
+            }
         }
 
-    private class DayTickRunEvent implements  ActionListener {
-        public void actionPerformed(ActionEvent d) { sim.dayTicks(); }
-    }
+        private class HundredTimeRunEvent implements ActionListener {
+            public void actionPerformed(ActionEvent b) {
+                sim.hundredTicks();
+            }
+        }
 
-    private class FullRunEvent implements  ActionListener {
-        public void actionPerformed(ActionEvent e) { sim.fullRun(); }
-    }
+        private class OneHourTimeRunEvent implements  ActionListener {
+            public void actionPerformed(ActionEvent c) { sim.oneHour(); }
+            }
+
+        private class DayTickRunEvent implements  ActionListener {
+            public void actionPerformed(ActionEvent d) { sim.dayTicks(); }
+        }
+
+        private class FullRunEvent implements  ActionListener {
+            public void actionPerformed(ActionEvent e) { sim.fullRun(); }
+        }
 
 }

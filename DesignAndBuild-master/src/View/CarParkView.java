@@ -1,5 +1,12 @@
 package View;
 
+
+/**
+ *
+ * @author      327278, 331048, 335364 & 343991
+ * @version     13-04-2016
+ */
+
 import Logic.*;
 import Model.Simulator;
 

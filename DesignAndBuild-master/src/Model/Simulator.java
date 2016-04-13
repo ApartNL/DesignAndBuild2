@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.Random;
 
 /**
+ *
  * @author      327278, 331048, 335364 & 343991
- * @version     07-04-2016
+ * @version     13-04-2016
  */
 
 public class Simulator implements Runnable{
@@ -42,8 +43,6 @@ public class Simulator implements Runnable{
 
     private int tickPause = 100;
 
-    private int reservationPerDay = 1;
-
     private int weekDayArrivals= 50; // average number of arriving cars per hour
     private int weekendArrivals = 60; // average number of arriving cars per hour
     private int Concert = 300; // average number of arriving cars per hour
@@ -64,9 +63,6 @@ public class Simulator implements Runnable{
     private int totalNumberOfCars;
     private int totalNumberOfTicketCars;
     private int totalNumberOfParkingPassCars;
-    /**
-     * Pascal@11/04/2016 - Hoeveel gereserveerd plaatsen er zijn.
-     */
     private int totalNumberOfReservationCars;
 
 
@@ -457,20 +453,6 @@ public class Simulator implements Runnable{
         cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
         car.setLocation(null);
         return car;
-    }
-
-    public Location getFirstFreeLocation() {
-        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
-            for (int row = 0; row < getNumberOfRows(); row++) {
-                for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
-                    if (getCarAt(location) == null) {
-                        return location;
-                    }
-                }
-            }
-        }
-        return null;
     }
 
     public Location getRandomFreeLocation() {

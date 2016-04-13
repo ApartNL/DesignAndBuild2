@@ -1,12 +1,12 @@
 package View;
 
 /**
- * @author 327278
- * @version 12/04/2016
+ *
+ * @author      327278, 331048, 335364 & 343991
+ * @version     13-04-2016
  */
 
 import javax.swing.*;
-import java.awt.*;
 import Model.Simulator;
 
 public class LogoView extends AbstractView {

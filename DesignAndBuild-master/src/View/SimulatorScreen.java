@@ -4,12 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 
 import Controller.SimulatorController;
-import Logic.*;
 import Model.*;
 
 /**
+ *
  * @author      327278, 331048, 335364 & 343991
- * @version     07-04-2016
+ * @version     13-04-2016
  */
 
 public class SimulatorScreen extends JFrame {

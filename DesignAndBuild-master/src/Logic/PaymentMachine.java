@@ -3,7 +3,7 @@ package Logic;
 /**
  * Public class for PaymentMachine. This defines the pricing of the tickets, parking passes and reservations of parking spaces
  * @author      327278, 331048, 335364 & 343991
- * @version     11/04/2016
+ * @version     13/04/2016
  */
 
 public class PaymentMachine {
