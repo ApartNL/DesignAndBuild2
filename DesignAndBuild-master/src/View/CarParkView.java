@@ -24,6 +24,9 @@ public class CarParkView extends AbstractView {
     public CarParkView(Simulator sim) {
         super(sim);
         this.size = new Dimension(0, 0);
+
+
+
     }
 
     /**

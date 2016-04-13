@@ -7,6 +7,7 @@ import java.util.Queue;
  *
  * @author      327278, 331048, 335364 & 343991
  * @version     13-04-2016
+ * This class creates an carQueue
  */
 
 public class CarQueue {
@@ -32,13 +33,28 @@ public class CarQueue {
         return queue.poll();
     }
 
+    /**
+     *
+     * @return the queue peek
+     */
+
     public Car peek(){
         return this.queue.peek();
     }
 
+    /**
+     * This methods returns the size of the queue
+     * @return The size of the queue
+     */
+
     public int getQueueSize(){
         return queue.size();
     }
+
+    /**
+     * This methods is a getter, it gets the queue.
+     * @return returns the queue
+     */
 
     public Queue<Car> getQueue() {
         return queue;
