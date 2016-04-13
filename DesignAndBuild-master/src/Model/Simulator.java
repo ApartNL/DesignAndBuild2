@@ -107,21 +107,36 @@ public class Simulator implements Runnable{
         ticksToDo += 60;
     }
 
+    /**
+     * method to run the simulator 1440 ticks which is equal to 1 day in the simulator
+     */
     public void dayTicks() {
         ticksToDo += 1440;
     }
 
+    /**
+     * method to run the simulator 100 ticks
+     */
     public void hundredTicks() {
         ticksToDo += 100;
     }
 
+    /**
+     * method to run the simulator 1 tick
+     */
     public void singleTick() {
         ticksToDo++;
     }
 
+    /**
+     * method to run the simulator normal
+     */
     public void fullRun() { ticksToDo +=40320;}
 
 
+    /**
+     * method to run the simulator
+     */
     public void run() {
         running = true;
         try{
@@ -137,6 +152,11 @@ public class Simulator implements Runnable{
         }
     }
 
+    /**
+     * method for the cars to return the amount of time they stay at the garage
+     * if the cars enter after 9:00pm the amount of time thay stay is less long than the cars that arrive before 9:00pm
+     * @return the amount of minutes in stayMinutes
+     */
     public int getstayMinutes() {
         Random r = new Random();
         int Low = 30;
@@ -170,7 +190,6 @@ public class Simulator implements Runnable{
 
 
         // Get the average number of cars that arrive per hour.
-
         int averageNumberOfCarsPerHour = 0;
         if(hour == 19 && day >=4 && day <= 6) {
             averageNumberOfCarsPerHour = Concert;
@@ -199,12 +218,14 @@ public class Simulator implements Runnable{
 
 
         // Calculate the number of cars that arrive this minute.
+
         double standardDeviation = averageNumberOfCarsPerHour * 0.1;
         double numberOfCarsPerHour = averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
         int numberOfCarsPerMinute = (int)Math.round(numberOfCarsPerHour / 60);
 
 
         // Add the cars to the back of the queue.
+
         for (int i = 0; i < numberOfCarsPerMinute; i++) {
             double randomD = random.nextDouble();
             System.out.println("RandomD : " + randomD);
@@ -344,10 +365,6 @@ public class Simulator implements Runnable{
         }
     }
 
-    /**
-     * method to set a day to an number which is used in the simulator to let you see which day it is
-     * @return the dayString
-     */
     public  String getDay() {
         String dayString ="";
         switch (day){

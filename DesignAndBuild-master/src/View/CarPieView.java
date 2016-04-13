@@ -1,8 +1,14 @@
 package View;
 
-import Model.Simulator;
+import Model.*;
 import java.math.BigDecimal;
 import java.awt.*;
+
+/**
+ * Class for creating a new Pie Chart to read the amount of Cars in percentages
+ * @author      327278, 331048, 335364 & 343991
+ * @version     13-04-2016
+ */
 
 public class CarPieView extends AbstractView {
 
@@ -12,6 +18,10 @@ public class CarPieView extends AbstractView {
     private int totalAmountOfCars;
     private double onePercent;
 
+    /**
+     * Constructor for a new CarPieView
+     * @param sim select the current simulatr.
+     */
     public CarPieView(Simulator sim) {
         super(sim);
         this.ticketCars = 0;
@@ -21,13 +31,16 @@ public class CarPieView extends AbstractView {
     }
 
     /**
-     * Overridden. Tell the GUI manager how big we would like to be.
+     * Overridden from superClass. Set how big the new dimensions should be.
      */
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(500, 300);
     }
 
+    /**
+     * Overriden from superClass. Update the view with the data this class requires to be shown.
+     */
     @Override
     public void updateView() {
         sim.countAllCars();
@@ -43,26 +56,36 @@ public class CarPieView extends AbstractView {
         this.repaint();
     }
 
+    /**
+     * Method to round off a double to two decimals.
+     * @param d             The double you want to give less decimals
+     * @param decimalPlace  Integer value for how many decimals you want.
+     * @return
+     */
     public static float round(double d, int decimalPlace) {
         BigDecimal bd = new BigDecimal(Double.toString(d));
         bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
         return bd.floatValue();
     }
 
+    /**
+     * Method to create the Pie Chart view and display the variables of the amount of cars and their types in the parking garage.
+     * @param g
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         if(totalAmountOfCars > 0) {
             // Calculate percentages
-            double percentageTicket = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : (double) (onePercent * this.ticketCars);
-            double percentageParkPass = totalAmountOfCars <= 0 || this.parkPassCars <= 0 ? 0 : (double) (onePercent * this.parkPassCars);
-            double percentageReservation = totalAmountOfCars <= 0 || this.reservationCars <= 0 ? 0 : (double) (onePercent * this.reservationCars);
+            double percentageTicket = onePercent * this.ticketCars;
+            double percentageParkPass = onePercent * this.parkPassCars;
+            double percentageReservation = onePercent * this.reservationCars;
             // Calculate one percent
             double calc = 3.6;
             // Calculate arcAngle
-            double ticketAngle = totalAmountOfCars <= 0 || this.ticketCars <= 0 ? 0 : (double) calc * percentageTicket;
-            double parkPassAngle = totalAmountOfCars <= 0 || this.parkPassCars <= 0 ? 0 : (double) calc * percentageParkPass;
-            double reservationAngle = totalAmountOfCars <= 0 || this.reservationCars <= 0 ? 0 : (double) calc * percentageReservation;
+            double ticketAngle = calc * percentageTicket;
+            double parkPassAngle = calc * percentageParkPass;
+            double reservationAngle = calc * percentageReservation;
             // Set view dimensions
             Dimension prefSize = this.getPreferredSize();
             g.setColor(Color.WHITE);
