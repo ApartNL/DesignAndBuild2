@@ -171,9 +171,6 @@ public class Simulator implements Runnable{
 
         // Get the average number of cars that arrive per hour.
 
-
-
-
         int averageNumberOfCarsPerHour = 0;
         if(hour == 19 && day >=4 && day <= 6) {
             averageNumberOfCarsPerHour = Concert;
@@ -347,6 +344,10 @@ public class Simulator implements Runnable{
         }
     }
 
+    /**
+     * method to set a day to an number which is used in the simulator to let you see which day it is
+     * @return the dayString
+     */
     public  String getDay() {
         String dayString ="";
         switch (day){
