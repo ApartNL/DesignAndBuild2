@@ -97,8 +97,8 @@ public class Simulator implements Runnable{
 
         ticksToDo = 0;
 
-        day = 4;
-        hour = 15;
+        day = 2;
+        hour = 18;
         minute = 0;
 
         running = false;
