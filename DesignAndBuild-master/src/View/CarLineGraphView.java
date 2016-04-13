@@ -3,6 +3,12 @@ package View;
 import Model.Simulator;
 import java.awt.*;
 
+/**
+ * This public class creates an Line graph to be seen in the simulatorscreen
+ * @author      327278, 331048, 335364 & 343991
+ * @version     13-04-2016
+ */
+
 public class CarLineGraphView extends AbstractView {
     private int ticketCars;
     private int parkPassCars;
@@ -10,6 +16,10 @@ public class CarLineGraphView extends AbstractView {
     private int totalAmountOfCars;
     final int PAD = 20;
 
+    /*
+    Constructor for the Carlinegraphview
+    @Param Simulator sim
+     */
     public CarLineGraphView(Simulator sim) {
         super(sim);
         this.ticketCars = 0;
