@@ -172,7 +172,9 @@ public class Simulator implements Runnable{
         // Get the average number of cars that arrive per hour.
 
 
-
+/**
+ * This method changes the imput of cars per hour depending on the day and time period currently active in the simulator.
+ */
 
         int averageNumberOfCarsPerHour = 0;
         if(hour == 19 && day >=4 && day <= 6) {
@@ -284,7 +286,7 @@ public class Simulator implements Runnable{
         // Let cars pay.
         for (int i = 0; i < paymentSpeed && paymentCarQueue.peek() != null; i++) {
             car = paymentCarQueue.removeCar();
-            paymentMachine.pay(car); //TODO: Do something with the bool.
+            paymentMachine.pay(car);
             removeCarAt(car.getLocation());
             exitCarQueue.addCar(car);
         }
@@ -347,6 +349,10 @@ public class Simulator implements Runnable{
         }
     }
 
+    /**
+     * Creates a switch with days of the week. This allows us to change days while the simulator is running.
+     * @return
+     */
     public  String getDay() {
         String dayString ="";
         switch (day){
