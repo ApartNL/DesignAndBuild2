@@ -1,12 +1,18 @@
 package View;
 
-import Model.Simulator;
-
+import Model.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class for creating the information display in the Simulator
+ * @author      327278, 331048, 335364 & 343991
+ * @version     13-04-2016
+ */
+
 public class InformationView extends AbstractView {
 
+    // Declare values for labels
     private static final String LABEL_TOTAL_AMOUNT_OF_CARS                          = "Total Cars: ";
     private static final String LABEL_CARS_WITH_PARKING_PASS                        = "Parking Passes: ";
     private static final String LABEL_CARS_WITH_TICKETS                             = "Tickets: ";
@@ -34,6 +40,7 @@ public class InformationView extends AbstractView {
     private static final String LABEL_EMPTY4                                        = " ";
     private static final String LABEL_EMPTY5                                        = " ";
 
+    // Declare labels
     private JLabel label_totalAmountOfCars;
     private JLabel label_carsWithParkingPass;
     private JLabel label_carsWithTickets;
@@ -88,9 +95,9 @@ public class InformationView extends AbstractView {
     private JLabel empty4;
     private JLabel empty5;
 
+    // Constructor for the informationview
     public InformationView(Simulator sim) {
         super(sim);
-
 
         this.label_totalAmountOfCars = new JLabel(InformationView.LABEL_TOTAL_AMOUNT_OF_CARS);
         this.label_carsWithParkingPass = new JLabel(InformationView.LABEL_CARS_WITH_PARKING_PASS);
@@ -163,8 +170,10 @@ public class InformationView extends AbstractView {
         this.empty4 = new JLabel();
         this.empty5 = new JLabel();
 
+        // Create a layout for the labels
         this.setLayout(new GridLayout(27,2));
 
+        // Add the labels to the layout
         this.add(label_legend);
         this.add(legend);
         this.add(label_ticket);
@@ -234,7 +243,7 @@ public class InformationView extends AbstractView {
     @Override
     public void updateView() {
         this.sim.countAllCars();
-
+        // Display the current values
         this.totalAmountOfCars.setText(sim.getTotalNumberOfCars() + " cars");
         this.carsWithParkingPass.setText(sim.getTotalNumberOfParkingPassCars() + " cars");
         this.carsWithTickets.setText(sim.getTotalNumberOfTicketCars() + " cars");

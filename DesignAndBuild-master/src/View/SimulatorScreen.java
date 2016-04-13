@@ -18,6 +18,10 @@ public class SimulatorScreen extends JFrame {
     private Container container;
     private Image im = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("src/Images/CityParkingIcon.png"));
 
+    /**
+     * Constructor for the
+     * @param sim
+     */
     public SimulatorScreen( Simulator sim) {
 
         this.sim = sim;

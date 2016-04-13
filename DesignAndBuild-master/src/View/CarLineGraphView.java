@@ -3,6 +3,12 @@ package View;
 import Model.Simulator;
 import java.awt.*;
 
+/**
+ * Class for creating a new Line Graph to read the amount of Cars
+ * @author      327278, 331048, 335364 & 343991
+ * @version     13-04-2016
+ */
+
 public class CarLineGraphView extends AbstractView {
     private int ticketCars;
     private int parkPassCars;
@@ -10,6 +16,10 @@ public class CarLineGraphView extends AbstractView {
     private int totalAmountOfCars;
     final int PAD = 20;
 
+    /**
+     * Constructor for the CarLineGraphView
+     * @param sim select the simulator
+     */
     public CarLineGraphView(Simulator sim) {
         super(sim);
         this.ticketCars = 0;
@@ -31,7 +41,13 @@ public class CarLineGraphView extends AbstractView {
         this.reservationCars = sim.getTotalNumberOfReservationCars();
         this.repaint();
     }
-    // This will draw a  Line Graph
+
+    /**
+     * This will create a line graph based on Graphics
+     * @param g select Graphics
+     *          Currently not working, still work in progress
+     */
+
     @Override public void paintComponent(Graphics g) {
         super.paintComponent(g);
         int[] data = { this.ticketCars, this.parkPassCars, this.reservationCars };

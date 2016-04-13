@@ -1,16 +1,14 @@
 package View;
 
+import Logic.*;
+import Model.*;
+import java.awt.*;
 
 /**
- *
+ * Class for creating a new CarParkView to see which spots are taken, reserved or free.
  * @author      327278, 331048, 335364 & 343991
  * @version     13-04-2016
  */
-
-import Logic.*;
-import Model.Simulator;
-
-import java.awt.*;
 
 public class CarParkView extends AbstractView {
 
@@ -54,14 +52,25 @@ public class CarParkView extends AbstractView {
         }
     }
 
+    /**
+     * Check if a parking spot is reserved or not
+     * @return isReserved : True if reserved, false if not reserved
+     */
     public boolean getIsReserved() {
         return isReserved;
     }
 
+    /**
+     * Set if a location is reserved or not
+     * @param isReserved : True if reserved, false if not reserved
+     */
     public void setIsReserved(boolean isReserved) {
         this.isReserved = isReserved;
     }
 
+    /**
+     * Inherited from abstractView. Used to update the current data in the Simulator.
+     */
     public void updateView() {
         // Create a new car park image if the size has changed.
         if (!size.equals(getSize())) {

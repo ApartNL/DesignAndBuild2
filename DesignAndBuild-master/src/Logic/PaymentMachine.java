@@ -68,17 +68,6 @@ public class PaymentMachine {
         return true;
     }
 
-    public int getNormalCars() {
-        return normalCars;
-    }
-
-    public int getParkpassCars() {
-        return parkpassCars;
-    }
-
-    public int getReservationCars() {
-        return reservationCars;
-    }
 
     public float getTotalRevenue() {
         return totalRevenue;
