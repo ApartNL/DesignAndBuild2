@@ -494,6 +494,10 @@ public class Simulator implements Runnable{
         return null;
     }
 
+    /**
+     * method for the cars that have an reservation to let them park at an random spot
+     * @return the location where the car is supposed to park
+     */
     public Location getReservedFreeLocation() {
         Random randomGenerator = new Random();
         int randomFloor = randomGenerator.nextInt(getNumberOfFloors());
