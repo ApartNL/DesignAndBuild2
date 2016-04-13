@@ -1,7 +1,7 @@
 package View;
 
 /**
- *
+ * This class creates an logoview to create an image for in the simulatorscreen
  * @author      327278, 331048, 335364 & 343991
  * @version     13-04-2016
  */
@@ -24,6 +24,8 @@ public class LogoView extends AbstractView {
         this.add(logoLabel);
     }
 
+    /* After the image is set, the view will be updated.
+     */
     @Override public void updateView() {
 
     }

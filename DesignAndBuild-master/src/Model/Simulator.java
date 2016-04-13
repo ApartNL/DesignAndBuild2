@@ -47,23 +47,23 @@ public class Simulator implements Runnable{
     private int weekendArrivals = 60; // average number of arriving cars per hour
     private int Concert = 300; // average number of arriving cars per hour
     private int atNight = 1; // average number of arriving cars per hour
-    private int shoppingNight = 100;
+    private int shoppingNight = 100; // avarage number of cars that arrive per hour
     private int atNightconcert = 3; // average number of arriving cars per hour
 
     private int enterSpeed = 10; // number of cars that can enter per minute
     private int paymentSpeed = 10; // number of cars that can pay per minute
     private int exitSpeed = 10; // number of cars that can leave per minute
-    private int stayMinutes = 0;
+    private int stayMinutes = 0; // amout of time the car is staying
 
 
-    private int numberOfFloors;
-    private int numberOfRows;
-    private int numberOfPlaces;
+    private int numberOfFloors; // number of floors the garage has
+    private int numberOfRows; // number of rows the garage has
+    private int numberOfPlaces; // the number of places the garage has
 
-    private int totalNumberOfCars;
-    private int totalNumberOfTicketCars;
-    private int totalNumberOfParkingPassCars;
-    private int totalNumberOfReservationCars;
+    private int totalNumberOfCars; // the total amount of cars that are in the garage
+    private int totalNumberOfTicketCars; // the total amount of cars with an normal ticket that are in the garage
+    private int totalNumberOfParkingPassCars; // the total amount of cars with an parking pass that are in the garage
+    private int totalNumberOfReservationCars; // the total amout of cars with an reservation that are in the garage
 
 
     private Random random;
@@ -100,6 +100,9 @@ public class Simulator implements Runnable{
         running = false;
     }
 
+    /**
+     * method to run the simulator 60 ticks which is equal to 1 hour in the simulator
+     */
     public void oneHour() {
         ticksToDo += 60;
     }

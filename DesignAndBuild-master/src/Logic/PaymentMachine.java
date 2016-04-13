@@ -8,6 +8,10 @@ package Logic;
 
 public class PaymentMachine {
 
+    /**
+     * Here are the values of the prices created and are numbers created for each revenue and different car amounts
+     */
+
     public static final float DEFAULT_PARKPASS_DISCOUNT = 0.9f;
     public static final float DEFAULT_RESERVATION_DISCOUNT = 0.8f;
 
@@ -49,6 +53,11 @@ public class PaymentMachine {
         this.reservationCarRevenue = 0;
     }
 
+    /**
+     * Here is stated what value should be shown where and the totalrevenue is updated each time one of the three cars pays.
+     * @param car
+     * @return the value of revenue for the correct car
+     */
     public boolean pay(Car car){
         if(car instanceof AdHocCar){
             normalCars++;
@@ -68,6 +77,10 @@ public class PaymentMachine {
         return true;
     }
 
+    /**
+     * These getters are being used to retrieve the value for each car so it can be shown in the statistics in the information view
+     * @return information view
+     */
 
     public float getTotalRevenue() {
         return totalRevenue;

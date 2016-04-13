@@ -73,6 +73,10 @@ public abstract class Car {
         minutesLeft--;
     }
 
+    /**
+     * Method to return location, minutesleft and is paying to the simulatorrunner
+     * @return the class, name and location, minutesleft and isPaying from the type of car
+     */
     @Override
     public String toString() {
         return this.getClass().getName() + "{" +
